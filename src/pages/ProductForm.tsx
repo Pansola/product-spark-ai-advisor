@@ -61,7 +61,7 @@ const ProductForm = () => {
     const score = Math.floor(Math.random() * (95 - 30 + 1)) + 30;
     
     // Generate mock analysis data
-    const mockResults = {
+    let mockResults = {
       demandAnalysis: {
         score: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
         trend: Math.random() > 0.5 ? "crescente" : "estável",
