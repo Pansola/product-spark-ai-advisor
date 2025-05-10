@@ -1,4 +1,3 @@
-
 export interface ProductFormData {
   productName: string;
   productLink?: string;
