@@ -1,4 +1,12 @@
+
 export interface ProductFormData {
+  productName: string;
+  productLink?: string;
+  productDescription?: string;
+  country: string;
+}
+
+export interface ProductData {
   productName: string;
   productLink?: string;
   productDescription?: string;
@@ -10,6 +18,14 @@ export interface AnalysisResults {
     score: number;
     trend: string;
     volumeBusca: number;
+    trendData?: {
+      month: string;
+      value: number;
+    }[];
+    competitorComparison?: {
+      name: string;
+      value: number;
+    }[];
   };
   competitionAnalysis: {
     level: string;
@@ -19,18 +35,39 @@ export interface AnalysisResults {
     title: string;
     description: string;
     channels: string[];
+    keywords?: string[];
+    mentalTriggers?: string[];
+    visualSuggestion?: {
+      format: string;
+      description: string;
+    };
+    adCopy?: {
+      short: string;
+      long: string;
+    };
+    targetAudience?: {
+      ageRange: string;
+      interests: string[];
+      behaviors: string[];
+    };
+    promotionalIdea?: string;
   };
   score: number;
   costAnalysis?: {
     estimatedCost: number;
     recommendedPrice: number;
     margin: number;
+    shipping?: number;
+    taxes?: number;
+    breakEvenPoint?: number;
+    nicheAverageMargin?: number;
   };
   suppliers?: string[];
   relatedProducts?: {
     name: string;
     score: number;
     category: string;
+    image?: string;
   }[];
 }
 

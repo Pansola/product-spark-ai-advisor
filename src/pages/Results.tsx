@@ -58,7 +58,7 @@ const Results = () => {
                 productData={productData} 
               />
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid gap-6 mt-8">
                 <DemandAnalysisCard demandAnalysis={analysisResults.demandAnalysis} />
                 <CompetitionAnalysisCard competitionAnalysis={analysisResults.competitionAnalysis} />
                 <MarketingStrategyCard marketingStrategy={analysisResults.marketingStrategy} />
@@ -68,15 +68,11 @@ const Results = () => {
                 )}
                 
                 {(selectedPlan === "pro" || selectedPlan === "premium") && analysisResults.suppliers && (
-                  <div className="md:col-span-2">
-                    <SuppliersCard suppliers={analysisResults.suppliers} />
-                  </div>
+                  <SuppliersCard suppliers={analysisResults.suppliers} />
                 )}
                 
                 {selectedPlan === "premium" && analysisResults.relatedProducts && (
-                  <div className="md:col-span-2">
-                    <RelatedProductsCard relatedProducts={analysisResults.relatedProducts} />
-                  </div>
+                  <RelatedProductsCard relatedProducts={analysisResults.relatedProducts} />
                 )}
               </div>
               
