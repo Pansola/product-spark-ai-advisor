@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -22,6 +21,36 @@ interface ProductFormData {
   productLink?: string;
   productDescription?: string;
   country: string;
+}
+
+// Define a comprehensive interface for all possible analysis results
+interface AnalysisResults {
+  demandAnalysis: {
+    score: number;
+    trend: string;
+    volumeBusca: number;
+  };
+  competitionAnalysis: {
+    level: string;
+    competitors: number;
+  };
+  marketingStrategy: {
+    title: string;
+    description: string;
+    channels: string[];
+  };
+  score: number;
+  costAnalysis?: {
+    estimatedCost: number;
+    recommendedPrice: number;
+    margin: number;
+  };
+  suppliers?: string[];
+  relatedProducts?: {
+    name: string;
+    score: number;
+    category: string;
+  }[];
 }
 
 const ProductForm = () => {
@@ -60,8 +89,8 @@ const ProductForm = () => {
     // Generate random score between 30 and 95
     const score = Math.floor(Math.random() * (95 - 30 + 1)) + 30;
     
-    // Generate mock analysis data
-    let mockResults = {
+    // Generate mock analysis data with the proper type
+    let mockResults: AnalysisResults = {
       demandAnalysis: {
         score: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
         trend: Math.random() > 0.5 ? "crescente" : "estável",
