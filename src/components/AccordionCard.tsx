@@ -22,7 +22,7 @@ const AccordionCard = ({
   const [isExpanded, setIsExpanded] = useState(defaultOpen);
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden h-full">
       <div className="bg-secondary p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="bg-primary rounded-full p-2 text-white">

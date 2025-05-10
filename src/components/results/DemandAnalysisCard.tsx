@@ -1,16 +1,28 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
 import AccordionCard from "@/components/AccordionCard";
 import { ChartContainer } from "@/components/ui/chart";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { Button } from "@/components/ui/button";
 
 interface DemandAnalysisCardProps {
   demandAnalysis: AnalysisResults["demandAnalysis"];
 }
 
 const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis }) => {
+  const [timeRange, setTimeRange] = useState<string>("6m");
+  
+  // Filtra os dados com base no período selecionado
+  const getFilteredData = () => {
+    if (!demandAnalysis.trendData) return [];
+    
+    // Em uma aplicação real, você filtraria os dados com base no período
+    // Para esta demonstração, estamos apenas retornando todos os dados
+    return demandAnalysis.trendData;
+  };
+
   // Conteúdo resumido que é sempre exibido
   const summaryContent = (
     <div className="space-y-3">
@@ -37,34 +49,82 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis 
   const detailedContent = demandAnalysis.trendData ? (
     <div className="space-y-6">
       <div>
-        <h4 className="text-lg font-medium mb-3">Tendência dos Últimos 6 Meses</h4>
-        <div className="h-64">
+        <h4 className="text-lg font-medium mb-3">Tendência de Demanda</h4>
+        <div className="flex flex-wrap gap-2 mb-4">
+          <Button 
+            size="sm" 
+            variant={timeRange === "24h" ? "default" : "outline"} 
+            onClick={() => setTimeRange("24h")}
+          >
+            Últimas 24h
+          </Button>
+          <Button 
+            size="sm" 
+            variant={timeRange === "7d" ? "default" : "outline"} 
+            onClick={() => setTimeRange("7d")}
+          >
+            7 dias
+          </Button>
+          <Button 
+            size="sm" 
+            variant={timeRange === "30d" ? "default" : "outline"} 
+            onClick={() => setTimeRange("30d")}
+          >
+            30 dias
+          </Button>
+          <Button 
+            size="sm" 
+            variant={timeRange === "6m" ? "default" : "outline"} 
+            onClick={() => setTimeRange("6m")}
+          >
+            6 meses
+          </Button>
+          <Button 
+            size="sm" 
+            variant={timeRange === "1y" ? "default" : "outline"} 
+            onClick={() => setTimeRange("1y")}
+          >
+            1 ano
+          </Button>
+        </div>
+        
+        <div className="h-64 w-full">
           <ChartContainer
             config={{
               trend: { color: "#4F7CAC" },
             }}
           >
-            <LineChart
-              data={demandAnalysis.trendData}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Line
-                name="Procuras"
-                type="monotone"
-                dataKey="value"
-                stroke="var(--color-trend, #4F7CAC)"
-                strokeWidth={2}
-                dot={{ r: 4 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={getFilteredData()}
+                margin={{ top: 5, right: 30, left: 20, bottom: 25 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis 
+                  dataKey="month" 
+                  tick={{ fontSize: 12 }} 
+                  angle={0}
+                  padding={{ left: 10, right: 10 }}
+                  height={50}
+                />
+                <YAxis />
+                <Tooltip />
+                <Line
+                  name="Procuras"
+                  type="monotone"
+                  dataKey="value"
+                  stroke="var(--color-trend, #4F7CAC)"
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </ChartContainer>
         </div>
-        <p className="text-sm mt-3 text-gray-500">Fonte: Baseado em dados de busca online e tendências de mercado.</p>
+        <p className="text-sm mt-4 text-gray-500">
+          Fonte: Baseado em dados de busca online e tendências de mercado.
+        </p>
       </div>
 
       {demandAnalysis.competitorComparison && (

@@ -58,7 +58,7 @@ const Results = () => {
                 productData={productData} 
               />
               
-              <div className="grid gap-6 mt-8">
+              <div className="grid md:grid-cols-2 gap-6 mt-8">
                 <DemandAnalysisCard demandAnalysis={analysisResults.demandAnalysis} />
                 <CompetitionAnalysisCard competitionAnalysis={analysisResults.competitionAnalysis} />
                 <MarketingStrategyCard marketingStrategy={analysisResults.marketingStrategy} />

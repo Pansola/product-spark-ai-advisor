@@ -52,9 +52,9 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis }) => 
         <span className="font-medium">Margem de lucro estimada:</span> {costAnalysis.margin}%
       </p>
       <div className="mt-2">
-        <div className="bg-dark text-white p-3 rounded">
+        <div className="bg-[#3C474B] text-white p-3 rounded border border-[#9EEFE5]">
           <p className="font-medium">Potencial de lucro por 100 vendas:</p>
-          <p className="text-2xl font-bold mt-1 text-highlight">
+          <p className="text-2xl font-bold mt-1 text-[#9EEFE5]">
             R$ {((costAnalysis.recommendedPrice - costAnalysis.estimatedCost) * 100).toLocaleString('pt-BR', {minimumFractionDigits: 2})}
           </p>
         </div>
@@ -139,27 +139,29 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis }) => 
       {/* Gráfico de lucro por volume */}
       <div>
         <h4 className="text-lg font-medium mb-3">Projeção de Lucro por Volume</h4>
-        <div className="h-64">
+        <div className="h-72 w-full">
           <ChartContainer
             config={{
               profit: { color: "#4F7CAC" },
             }}
           >
-            <BarChart
-              data={volumeData}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`} />
-              <Legend />
-              <Bar 
-                dataKey="lucro" 
-                name="Lucro Total" 
-                fill="var(--color-profit, #4F7CAC)" 
-              />
-            </BarChart>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={volumeData}
+                margin={{ top: 5, right: 30, left: 20, bottom: 30 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" tick={{ fontSize: 11 }} height={60} />
+                <YAxis tick={{ fontSize: 11 }} width={80} />
+                <Tooltip formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`} />
+                <Legend wrapperStyle={{ marginTop: "10px" }} />
+                <Bar 
+                  dataKey="lucro" 
+                  name="Lucro Total" 
+                  fill="var(--color-profit, #4F7CAC)" 
+                />
+              </BarChart>
+            </ResponsiveContainer>
           </ChartContainer>
         </div>
       </div>

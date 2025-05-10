@@ -1,11 +1,12 @@
 
 import React from "react";
 import { Award } from "lucide-react";
-import { AnalysisResults } from "@/types/product";
+import { AnalysisResults, ProductData } from "@/types/product";
 import AccordionCard from "@/components/AccordionCard";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { generateMockResults } from "@/utils/mockDataGenerator";
 
 interface RelatedProductsCardProps {
   relatedProducts: NonNullable<AnalysisResults["relatedProducts"]>;
@@ -15,18 +16,26 @@ const RelatedProductsCard: React.FC<RelatedProductsCardProps> = ({ relatedProduc
   const navigate = useNavigate();
 
   const handleAnalyzeProduct = (product: AnalysisResults["relatedProducts"][0]) => {
-    // Salva o produto selecionado no sessionStorage
-    sessionStorage.setItem('selectedProduct', JSON.stringify({
+    // Criando dados do produto selecionado
+    const selectedProduct: ProductData = {
       productName: product.name,
       country: "brasil", // Default
-    }));
-    toast.success(`Iniciando análise de "${product.name}"`, {
-      description: "Você será redirecionado para o formulário de produto"
+    };
+    
+    // Salva o produto selecionado no sessionStorage
+    sessionStorage.setItem('productData', JSON.stringify(selectedProduct));
+    
+    // Gera resultados para o novo produto
+    const selectedPlan = sessionStorage.getItem('selectedPlan') || 'premium';
+    const newResults = generateMockResults(selectedProduct, selectedPlan);
+    sessionStorage.setItem('analysisResults', JSON.stringify(newResults));
+    
+    toast.success(`Análise de "${product.name}" concluída`, {
+      description: "Exibindo resultados..."
     });
-    // Redireciona para o formulário de produto
-    setTimeout(() => {
-      navigate('/product-form');
-    }, 1000);
+    
+    // Recarrega a página atual para exibir os novos resultados
+    window.location.reload();
   };
 
   // Conteúdo resumido que é sempre exibido
@@ -37,14 +46,14 @@ const RelatedProductsCard: React.FC<RelatedProductsCardProps> = ({ relatedProduc
       </p>
       <div className="grid md:grid-cols-3 gap-4">
         {relatedProducts.map((product, index) => (
-          <div key={index} className="border border-gray-200 rounded-lg p-4">
+          <div key={index} className="border border-gray-200 rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="font-medium">{product.name}</span>
-              <span className="bg-highlight text-dark px-2 py-1 rounded text-sm font-medium">
+              <span className="bg-highlight text-dark px-2 py-0.5 rounded text-xs font-medium">
                 {product.score}/100
               </span>
             </div>
-            <p className="text-gray-500 text-sm">Categoria: {product.category}</p>
+            <p className="text-gray-500 text-xs">Categoria: {product.category}</p>
           </div>
         ))}
       </div>

@@ -30,6 +30,18 @@ export interface AnalysisResults {
   competitionAnalysis: {
     level: string;
     competitors: number;
+    marketShare?: {
+      user: number;
+      competitors: number;
+    };
+    trend?: string;
+    averagePrice?: number;
+    swot?: {
+      strengths: string[];
+      weaknesses: string[];
+      opportunities: string[];
+      threats: string[];
+    };
   };
   marketingStrategy: {
     title: string;
