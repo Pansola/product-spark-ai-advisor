@@ -1,13 +1,4 @@
-
 export interface ProductFormData {
-  productName: string;
-  productLink?: string;
-  productDescription?: string;
-  country: string;
-}
-
-// Adding the ProductData interface that was missing
-export interface ProductData {
   productName: string;
   productLink?: string;
   productDescription?: string;
