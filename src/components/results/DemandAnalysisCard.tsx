@@ -11,16 +11,68 @@ interface DemandAnalysisCardProps {
   demandAnalysis: AnalysisResults["demandAnalysis"];
 }
 
+// Dados simulados para diferentes períodos de tempo
+const mockDataByPeriod = {
+  "24h": [
+    { month: "00:00", value: 20 },
+    { month: "04:00", value: 15 },
+    { month: "08:00", value: 35 },
+    { month: "12:00", value: 45 },
+    { month: "16:00", value: 55 },
+    { month: "20:00", value: 40 },
+    { month: "23:00", value: 30 },
+  ],
+  "7d": [
+    { month: "Seg", value: 30 },
+    { month: "Ter", value: 35 },
+    { month: "Qua", value: 45 },
+    { month: "Qui", value: 40 },
+    { month: "Sex", value: 55 },
+    { month: "Sáb", value: 65 },
+    { month: "Dom", value: 50 },
+  ],
+  "30d": [
+    { month: "Sem 1", value: 40 },
+    { month: "Sem 2", value: 45 },
+    { month: "Sem 3", value: 55 },
+    { month: "Sem 4", value: 60 },
+  ],
+  "6m": [
+    { month: "Jan", value: 30 },
+    { month: "Fev", value: 40 },
+    { month: "Mar", value: 45 },
+    { month: "Abr", value: 55 },
+    { month: "Mai", value: 60 },
+    { month: "Jun", value: 65 },
+  ],
+  "1y": [
+    { month: "Jan", value: 30 },
+    { month: "Fev", value: 35 },
+    { month: "Mar", value: 40 },
+    { month: "Abr", value: 45 },
+    { month: "Mai", value: 50 },
+    { month: "Jun", value: 55 },
+    { month: "Jul", value: 60 },
+    { month: "Ago", value: 65 },
+    { month: "Set", value: 70 },
+    { month: "Out", value: 75 },
+    { month: "Nov", value: 80 },
+    { month: "Dez", value: 85 },
+  ]
+};
+
 const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis }) => {
   const [timeRange, setTimeRange] = useState<string>("6m");
   
-  // Filtra os dados com base no período selecionado
+  // Obter dados com base no período selecionado
   const getFilteredData = () => {
-    if (!demandAnalysis.trendData) return [];
+    // Se houver dados reais, podemos filtrá-los
+    if (demandAnalysis.trendData && demandAnalysis.trendData.length > 0) {
+      return demandAnalysis.trendData;
+    }
     
-    // Em uma aplicação real, você filtraria os dados com base no período
-    // Para esta demonstração, estamos apenas retornando todos os dados
-    return demandAnalysis.trendData;
+    // Caso contrário, usamos os dados simulados
+    return mockDataByPeriod[timeRange as keyof typeof mockDataByPeriod] || mockDataByPeriod["6m"];
   };
 
   // Conteúdo resumido que é sempre exibido
@@ -46,7 +98,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis 
   );
 
   // Conteúdo detalhado que é exibido apenas quando expandido
-  const detailedContent = demandAnalysis.trendData ? (
+  const detailedContent = (
     <div className="space-y-6">
       <div>
         <h4 className="text-lg font-medium mb-3">Tendência de Demanda</h4>
@@ -88,7 +140,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis 
           </Button>
         </div>
         
-        <div className="h-64 w-full">
+        <div className="h-80 w-full"> {/* Aumentei a altura do gráfico */}
           <ChartContainer
             config={{
               trend: { color: "#4F7CAC" },
@@ -97,7 +149,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis 
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={getFilteredData()}
-                margin={{ top: 5, right: 30, left: 20, bottom: 25 }}
+                margin={{ top: 10, right: 30, left: 20, bottom: 30 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis 
@@ -107,7 +159,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis 
                   padding={{ left: 10, right: 10 }}
                   height={50}
                 />
-                <YAxis />
+                <YAxis tick={{ fontSize: 12 }} width={40} />
                 <Tooltip />
                 <Line
                   name="Procuras"
@@ -157,12 +209,11 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis 
         </p>
       </div>
     </div>
-  ) : (
-    <p>Dados detalhados não disponíveis</p>
   );
 
   return (
     <AccordionCard
+      id="demand-analysis"
       title="Análise de Demanda"
       icon={<TrendingUp size={18} />}
       summary={summaryContent}

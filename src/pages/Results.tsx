@@ -10,7 +10,6 @@ import DemandAnalysisCard from "@/components/results/DemandAnalysisCard";
 import CompetitionAnalysisCard from "@/components/results/CompetitionAnalysisCard";
 import MarketingStrategyCard from "@/components/results/MarketingStrategyCard";
 import CostAnalysisCard from "@/components/results/CostAnalysisCard";
-import SuppliersCard from "@/components/results/SuppliersCard";
 import RelatedProductsCard from "@/components/results/RelatedProductsCard";
 import ResultsActions from "@/components/results/ResultsActions";
 
@@ -58,6 +57,7 @@ const Results = () => {
                 productData={productData} 
               />
               
+              {/* Grid com 2 colunas para os cards principais */}
               <div className="grid md:grid-cols-2 gap-6 mt-8">
                 <DemandAnalysisCard demandAnalysis={analysisResults.demandAnalysis} />
                 <CompetitionAnalysisCard competitionAnalysis={analysisResults.competitionAnalysis} />
@@ -66,11 +66,10 @@ const Results = () => {
                 {(selectedPlan === "pro" || selectedPlan === "premium") && analysisResults.costAnalysis && (
                   <CostAnalysisCard costAnalysis={analysisResults.costAnalysis} />
                 )}
-                
-                {(selectedPlan === "pro" || selectedPlan === "premium") && analysisResults.suppliers && (
-                  <SuppliersCard suppliers={analysisResults.suppliers} />
-                )}
-                
+              </div>
+              
+              {/* Grid de 1 coluna (largura total) para o card de produtos relacionados */}
+              <div className="mt-6">
                 {selectedPlan === "premium" && analysisResults.relatedProducts && (
                   <RelatedProductsCard relatedProducts={analysisResults.relatedProducts} />
                 )}

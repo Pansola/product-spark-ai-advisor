@@ -10,6 +10,7 @@ export interface AccordionCardProps {
   summary: React.ReactNode;
   details: React.ReactNode;
   defaultOpen?: boolean;
+  id?: string; // Adicionamos um ID opcional para identificação única
 }
 
 const AccordionCard = ({ 
@@ -17,12 +18,13 @@ const AccordionCard = ({
   icon, 
   summary, 
   details,
-  defaultOpen = false 
+  defaultOpen = false,
+  id 
 }: AccordionCardProps) => {
   const [isExpanded, setIsExpanded] = useState(defaultOpen);
 
   return (
-    <Card className="overflow-hidden h-full">
+    <Card className="overflow-hidden h-full" data-accordion-id={id}>
       <div className="bg-secondary p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="bg-primary rounded-full p-2 text-white">
@@ -51,10 +53,8 @@ const AccordionCard = ({
       </div>
 
       <div className="p-6">
-        {/* Sempre exibir o resumo */}
         {summary}
         
-        {/* Detalhes expandidos */}
         {isExpanded && (
           <div className="mt-6 pt-6 border-t border-gray-100">
             {details}
