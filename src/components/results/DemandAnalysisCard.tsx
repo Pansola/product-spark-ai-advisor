@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -218,9 +219,6 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
             </ResponsiveContainer>
           </ChartContainer>
         </div>
-        <p className="text-sm mt-4 text-gray-500">
-          Fonte: Baseado em dados de busca online e tendências de mercado.
-        </p>
       </div>
 
       {demandAnalysis.competitorComparison && <div className="mt-10">

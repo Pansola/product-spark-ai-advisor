@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Package } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -120,7 +121,7 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
         </div>
       </div>
       
-      {/* Gráfico de lucro por volume - Aumentei o espaçamento e ajustei a altura */}
+      {/* Gráfico de lucro por volume - Modificado para remover a legenda dentro do gráfico */}
       <div className="mt-8 py-[25px]">
         <h4 className="text-lg font-medium mb-4">Projeção de Lucro por Volume</h4>
         <div className="h-80 w-full mt-6">
@@ -146,13 +147,18 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
                 <Tooltip formatter={value => `R$ ${Number(value).toLocaleString('pt-BR', {
                 minimumFractionDigits: 2
               })}`} />
-                <Legend wrapperStyle={{
-                marginTop: "10px"
-              }} />
                 <Bar dataKey="lucro" name="Lucro Total" fill="var(--color-profit, #4F7CAC)" />
               </BarChart>
             </ResponsiveContainer>
           </ChartContainer>
+        </div>
+        
+        {/* Adicionando a legenda do gráfico aqui, após o gráfico */}
+        <div className="text-center mt-2 mb-6">
+          <span className="inline-flex items-center">
+            <span className="h-3 w-3 mr-2 bg-[#4F7CAC] rounded-sm"></span>
+            <span className="text-sm text-gray-700">Lucro Total</span>
+          </span>
         </div>
       </div>
       

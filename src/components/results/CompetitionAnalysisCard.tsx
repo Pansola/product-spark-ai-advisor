@@ -1,22 +1,15 @@
+
 import React from "react";
 import { Users, Check, X } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
 import AccordionCard from "@/components/AccordionCard";
 import { ChartContainer } from "@/components/ui/chart";
-import { PieChart, Pie, Cell, Tooltip, Legend, ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 interface CompetitionAnalysisCardProps {
   competitionAnalysis: AnalysisResults["competitionAnalysis"];
   id?: string;
 }
-
-// Mock data para o mapa de posicionamento
-const positioningMapData = [
-  { x: 50, y: 60, z: 100, name: 'Seu Produto' }, // x: preço, y: valor percebido, z: tamanho do ponto
-  { x: 70, y: 80, z: 60, name: 'Concorrente A' },
-  { x: 30, y: 40, z: 60, name: 'Concorrente B' },
-  { x: 60, y: 50, z: 60, name: 'Concorrente C' },
-];
 
 const CompetitionAnalysisCard: React.FC<CompetitionAnalysisCardProps> = ({ competitionAnalysis, id }) => {
   // Cores para o nível de concorrência
@@ -150,50 +143,6 @@ const CompetitionAnalysisCard: React.FC<CompetitionAnalysisCardProps> = ({ compe
             <span className="text-red-600 font-medium">Fácil replicação do produto (risco)</span>
           </li>
         </ul>
-      </div>
-
-      {/* Mapa de Posicionamento */}
-      <div>
-        <h4 className="text-lg font-medium mb-3">Mapa de Posicionamento</h4>
-        <div className="h-64 w-full">
-          <ChartContainer
-            config={{
-              yourProduct: { color: "#4F7CAC" },
-              competitor: { color: "#C0E0DE" },
-            }}
-          >
-            <ScatterChart
-              margin={{ top: 20, right: 20, bottom: 30, left: 30 }}
-            >
-              <CartesianGrid />
-              <XAxis 
-                type="number" 
-                dataKey="x" 
-                name="Preço" 
-                domain={[0, 100]} 
-                label={{ value: 'Preço', position: 'bottom' }}
-              />
-              <YAxis 
-                type="number" 
-                dataKey="y" 
-                name="Valor Percebido" 
-                domain={[0, 100]} 
-                label={{ value: 'Valor Percebido', angle: -90, position: 'left' }}
-              />
-              <ZAxis type="number" dataKey="z" range={[50, 200]} />
-              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              <Legend />
-              <Scatter 
-                name="Posicionamento dos Produtos" 
-                data={positioningMapData} 
-                fill="#4F7CAC" 
-              />
-            </ScatterChart>
-          </ChartContainer>
-        </div>
-        <p className="text-xs text-gray-500 mt-1 text-center">
-          Eixo X: Preço (menor para maior) | Eixo Y: Valor Percebido (menor para maior)
-        </p>
       </div>
 
       {/* Recomendações Estratégicas */}
