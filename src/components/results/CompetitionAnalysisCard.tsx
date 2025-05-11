@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Users, Check, X } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -8,6 +7,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend, ScatterChart, Scatter, XAxis, YAx
 
 interface CompetitionAnalysisCardProps {
   competitionAnalysis: AnalysisResults["competitionAnalysis"];
+  id?: string;
 }
 
 // Mock data para o mapa de posicionamento
@@ -18,7 +18,7 @@ const positioningMapData = [
   { x: 60, y: 50, z: 60, name: 'Concorrente C' },
 ];
 
-const CompetitionAnalysisCard: React.FC<CompetitionAnalysisCardProps> = ({ competitionAnalysis }) => {
+const CompetitionAnalysisCard: React.FC<CompetitionAnalysisCardProps> = ({ competitionAnalysis, id }) => {
   // Cores para o nível de concorrência
   const getLevelColor = () => {
     if (competitionAnalysis.level === "baixa") return "text-green-600";
@@ -250,6 +250,7 @@ const CompetitionAnalysisCard: React.FC<CompetitionAnalysisCardProps> = ({ compe
 
   return (
     <AccordionCard
+      id={id}
       title="Análise de Concorrência"
       icon={<Users size={18} />}
       summary={summaryContent}

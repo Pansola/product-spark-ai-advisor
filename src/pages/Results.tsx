@@ -59,19 +59,34 @@ const Results = () => {
               
               {/* Grid com 2 colunas para os cards principais */}
               <div className="grid md:grid-cols-2 gap-6 mt-8">
-                <DemandAnalysisCard demandAnalysis={analysisResults.demandAnalysis} />
-                <CompetitionAnalysisCard competitionAnalysis={analysisResults.competitionAnalysis} />
-                <MarketingStrategyCard marketingStrategy={analysisResults.marketingStrategy} />
+                <DemandAnalysisCard 
+                  demandAnalysis={analysisResults.demandAnalysis} 
+                  id="demand-analysis" 
+                />
+                <CompetitionAnalysisCard 
+                  competitionAnalysis={analysisResults.competitionAnalysis} 
+                  id="competition-analysis" 
+                />
+                <MarketingStrategyCard 
+                  marketingStrategy={analysisResults.marketingStrategy} 
+                  id="marketing-strategy" 
+                />
                 
                 {(selectedPlan === "pro" || selectedPlan === "premium") && analysisResults.costAnalysis && (
-                  <CostAnalysisCard costAnalysis={analysisResults.costAnalysis} />
+                  <CostAnalysisCard 
+                    costAnalysis={analysisResults.costAnalysis} 
+                    id="cost-analysis" 
+                  />
                 )}
               </div>
               
               {/* Grid de 1 coluna (largura total) para o card de produtos relacionados */}
               <div className="mt-6">
                 {selectedPlan === "premium" && analysisResults.relatedProducts && (
-                  <RelatedProductsCard relatedProducts={analysisResults.relatedProducts} />
+                  <RelatedProductsCard 
+                    relatedProducts={analysisResults.relatedProducts} 
+                    id="related-products" 
+                  />
                 )}
               </div>
               

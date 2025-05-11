@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Package } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -9,9 +8,10 @@ import { Input } from "@/components/ui/input";
 
 interface CostAnalysisCardProps {
   costAnalysis: NonNullable<AnalysisResults["costAnalysis"]>;
+  id?: string;
 }
 
-const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis }) => {
+const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id }) => {
   // Estado para os valores editáveis do simulador
   const [productCost, setProductCost] = useState(costAnalysis.estimatedCost.toString());
   const [sellingPrice, setSellingPrice] = useState(costAnalysis.recommendedPrice.toString());
@@ -213,6 +213,7 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis }) => 
 
   return (
     <AccordionCard
+      id={id}
       title="Análise de Custo e Margem"
       icon={<Package size={18} />}
       summary={summaryContent}

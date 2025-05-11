@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Award, RefreshCw } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -8,9 +7,10 @@ import { toast } from "sonner";
 
 interface MarketingStrategyCardProps {
   marketingStrategy: AnalysisResults["marketingStrategy"];
+  id?: string;
 }
 
-const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketingStrategy }) => {
+const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketingStrategy, id }) => {
   const [title, setTitle] = useState(marketingStrategy.title);
   const [description, setDescription] = useState(marketingStrategy.description);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -201,6 +201,7 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
 
   return (
     <AccordionCard
+      id={id}
       title="Estratégia de Marketing"
       icon={<Award size={18} />}
       summary={summaryContent}

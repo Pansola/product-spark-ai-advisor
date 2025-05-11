@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -9,6 +8,7 @@ import { Button } from "@/components/ui/button";
 
 interface DemandAnalysisCardProps {
   demandAnalysis: AnalysisResults["demandAnalysis"];
+  id?: string;
 }
 
 // Dados simulados para diferentes períodos de tempo
@@ -61,7 +61,7 @@ const mockDataByPeriod = {
   ]
 };
 
-const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis }) => {
+const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis, id }) => {
   const [timeRange, setTimeRange] = useState<string>("6m");
   
   // Obter dados com base no período selecionado
@@ -213,7 +213,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis 
 
   return (
     <AccordionCard
-      id="demand-analysis"
+      id={id}
       title="Análise de Demanda"
       icon={<TrendingUp size={18} />}
       summary={summaryContent}

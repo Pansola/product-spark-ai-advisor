@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Award } from "lucide-react";
 import { AnalysisResults, ProductData } from "@/types/product";
@@ -10,9 +9,10 @@ import { generateMockResults } from "@/utils/mockDataGenerator";
 
 interface RelatedProductsCardProps {
   relatedProducts: NonNullable<AnalysisResults["relatedProducts"]>;
+  id?: string;
 }
 
-const RelatedProductsCard: React.FC<RelatedProductsCardProps> = ({ relatedProducts }) => {
+const RelatedProductsCard: React.FC<RelatedProductsCardProps> = ({ relatedProducts, id }) => {
   const navigate = useNavigate();
 
   const handleAnalyzeProduct = (product: AnalysisResults["relatedProducts"][0]) => {
@@ -103,6 +103,7 @@ const RelatedProductsCard: React.FC<RelatedProductsCardProps> = ({ relatedProduc
 
   return (
     <AccordionCard
+      id={id}
       title="Produtos Validados e Populares"
       icon={<Award size={18} />}
       summary={summaryContent}
