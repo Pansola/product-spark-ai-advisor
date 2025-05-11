@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Package } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -64,7 +65,7 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
 
   // Conteúdo detalhado que é exibido apenas quando expandido
   const detailedContent = (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Simulador de margem */}
       <div>
         <h4 className="text-lg font-medium mb-3">Simulador de Margem</h4>
@@ -136,10 +137,10 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
         </div>
       </div>
       
-      {/* Gráfico de lucro por volume */}
-      <div>
-        <h4 className="text-lg font-medium mb-3">Projeção de Lucro por Volume</h4>
-        <div className="h-72 w-full">
+      {/* Gráfico de lucro por volume - Aumentei o espaçamento e ajustei a altura */}
+      <div className="mt-8">
+        <h4 className="text-lg font-medium mb-4">Projeção de Lucro por Volume</h4>
+        <div className="h-80 w-full mt-6">
           <ChartContainer
             config={{
               profit: { color: "#4F7CAC" },
@@ -148,7 +149,7 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={volumeData}
-                margin={{ top: 5, right: 30, left: 20, bottom: 30 }}
+                margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" tick={{ fontSize: 11 }} height={60} />
@@ -166,9 +167,9 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
         </div>
       </div>
       
-      {/* Ponto de equilíbrio */}
+      {/* Ponto de equilíbrio - Adicionei mais espaçamento */}
       {costAnalysis.breakEvenPoint && (
-        <div>
+        <div className="mt-12">
           <h4 className="text-lg font-medium mb-2">Ponto de Equilíbrio</h4>
           <div className="bg-gray-50 p-4 rounded-lg">
             <p className="font-medium text-lg">{costAnalysis.breakEvenPoint} unidades</p>
@@ -179,9 +180,9 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
         </div>
       )}
       
-      {/* Comparativo de margens do nicho */}
+      {/* Comparativo de margens do nicho - Adicionei mais espaçamento */}
       {costAnalysis.nicheAverageMargin && (
-        <div>
+        <div className="mt-8">
           <h4 className="text-lg font-medium mb-2">Comparativo com o Nicho</h4>
           <div className="flex items-center mt-2">
             <div className="flex-1">

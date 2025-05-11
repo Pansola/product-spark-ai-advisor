@@ -47,13 +47,19 @@ const ProductFormFields: React.FC<ProductFormFieldsProps> = ({
       
       <div>
         <Label htmlFor="productLink">
-          Link do Produto (opcional)
+          Link do Produto <span className="text-red-500">*</span>
         </Label>
         <Input
           id="productLink"
           placeholder="https://exemplo.com/produto"
-          {...register("productLink")}
+          {...register("productLink", {
+            required: "Link do produto é obrigatório"
+          })}
+          className={errors.productLink ? "border-red-500" : ""}
         />
+        {errors.productLink && (
+          <p className="text-red-500 text-sm mt-1">{errors.productLink.message}</p>
+        )}
       </div>
       
       <div>
@@ -75,6 +81,9 @@ const ProductFormFields: React.FC<ProductFormFieldsProps> = ({
         <Select 
           onValueChange={(value) => setValue("country", value)} 
           defaultValue={watch("country")}
+          {...register("country", {
+            required: "Selecione um país"
+          })}
         >
           <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
             <SelectValue placeholder="Selecione o país" />
@@ -88,7 +97,7 @@ const ProductFormFields: React.FC<ProductFormFieldsProps> = ({
           </SelectContent>
         </Select>
         {errors.country && (
-          <p className="text-red-500 text-sm mt-1">Selecione um país</p>
+          <p className="text-red-500 text-sm mt-1">{errors.country.message || "Selecione um país"}</p>
         )}
       </div>
     </div>

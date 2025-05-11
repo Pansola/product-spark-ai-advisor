@@ -108,12 +108,7 @@ export const generateMockResults = (data: ProductFormData, plan: string): Analys
         taxes: Math.floor(recommendedPrice * 0.15),
         breakEvenPoint: Math.floor((estimatedCost * 100) / (recommendedPrice - estimatedCost)),
         nicheAverageMargin: margin + (Math.floor(Math.random() * 10) - 5),
-      },
-      suppliers: [
-        "AliExpress Premium Sellers",
-        "CJ Dropshipping",
-        "Alibaba Selected"
-      ]
+      }
     };
   }
   

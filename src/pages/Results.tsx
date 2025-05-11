@@ -83,10 +83,12 @@ const Results = () => {
               {/* Grid de 1 coluna (largura total) para o card de produtos relacionados */}
               <div className="mt-6">
                 {selectedPlan === "premium" && analysisResults.relatedProducts && (
-                  <RelatedProductsCard 
-                    relatedProducts={analysisResults.relatedProducts} 
-                    id="related-products" 
-                  />
+                  <div className="w-full">
+                    <RelatedProductsCard 
+                      relatedProducts={analysisResults.relatedProducts} 
+                      id="related-products" 
+                    />
+                  </div>
                 )}
               </div>
               

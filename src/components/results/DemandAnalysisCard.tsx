@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -140,7 +141,8 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis,
           </Button>
         </div>
         
-        <div className="h-80 w-full"> {/* Aumentei a altura do gráfico */}
+        {/* Aumentei o espaçamento antes do gráfico e ajustei a altura */}
+        <div className="mt-8 h-72 w-full"> 
           <ChartContainer
             config={{
               trend: { color: "#4F7CAC" },
@@ -149,7 +151,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis,
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={getFilteredData()}
-                margin={{ top: 10, right: 30, left: 20, bottom: 30 }}
+                margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis 
@@ -180,7 +182,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis,
       </div>
 
       {demandAnalysis.competitorComparison && (
-        <div>
+        <div className="mt-10">
           <h4 className="text-lg font-medium mb-3">Comparação com Produtos Similares</h4>
           <div className="space-y-3">
             {demandAnalysis.competitorComparison.map((competitor, index) => (
@@ -201,7 +203,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({ demandAnalysis,
         </div>
       )}
 
-      <div>
+      <div className="mt-10">
         <h4 className="text-lg font-medium mb-1">Volume de Busca Mensal Estimado</h4>
         <p className="text-2xl font-bold text-primary">{demandAnalysis.volumeBusca.toLocaleString()}</p>
         <p className="text-sm text-gray-600 mt-1">
