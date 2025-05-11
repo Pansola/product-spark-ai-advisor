@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -164,9 +165,10 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
 
   // Conteúdo detalhado que é exibido apenas quando expandido
   const detailedContent = <div className="space-y-6">
-      <div className="my-0 py-0">
-        <h4 className="text-lg font-medium mb-3">Tendência de Demanda</h4>
-        <div className="flex flex-wrap gap-2 mb-4">
+      {/* Seção de Tendência de Demanda com melhor espaçamento */}
+      <div className="mt-4 pt-6">
+        <h4 className="text-lg font-medium mb-5">Tendência de Demanda</h4>
+        <div className="flex flex-wrap gap-2 mb-8">
           <Button size="sm" variant={timeRange === "24h" ? "default" : "outline"} onClick={() => setTimeRange("24h")}>
             Últimas 24h
           </Button>
@@ -184,8 +186,8 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
           </Button>
         </div>
         
-        {/* Aumentei o espaçamento antes do gráfico e ajustei a altura */}
-        <div className="mt-8 h-72 w-full"> 
+        {/* Altura aumentada e margens melhoradas para o gráfico */}
+        <div className="mt-12 h-80 w-full"> 
           <ChartContainer config={{
           trend: {
             color: "#4F7CAC"
@@ -193,10 +195,10 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
         }}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={getFilteredData()} margin={{
-              top: 20,
+              top: 30,
               right: 30,
               left: 20,
-              bottom: 40
+              bottom: 50
             }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" tick={{
@@ -204,10 +206,10 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
               }} angle={0} padding={{
                 left: 10,
                 right: 10
-              }} height={50} />
+              }} height={60} />
                 <YAxis tick={{
                 fontSize: 12
-              }} width={40} />
+              }} width={50} />
                 <Tooltip />
                 <Line name="Procuras" type="monotone" dataKey="value" stroke="var(--color-trend, #4F7CAC)" strokeWidth={2} dot={{
                 r: 4
@@ -220,8 +222,8 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
         </div>
       </div>
 
-      {demandAnalysis.competitorComparison && <div className="mt-10">
-          <h4 className="mb-3 py-0 text-lg font-medium text-left my-0">Comparação com Produtos Similares</h4>
+      {demandAnalysis.competitorComparison && <div className="mt-16">
+          <h4 className="mb-4 py-0 text-lg font-medium text-left my-0">Comparação com Produtos Similares</h4>
           <div className="space-y-3">
             {demandAnalysis.competitorComparison.map((competitor, index) => <div key={index} className="py-0">
                 <div className="flex justify-between mb-1">
@@ -237,7 +239,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
           </div>
         </div>}
 
-      <div className="mt-10">
+      <div className="mt-16">
         <h4 className="text-lg font-medium mb-1">Volume de Busca Mensal Estimado</h4>
         <p className="text-2xl font-bold text-primary">{demandAnalysis.volumeBusca.toLocaleString()}</p>
         <p className="text-sm text-gray-600 mt-1">

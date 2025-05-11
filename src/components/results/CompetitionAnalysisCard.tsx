@@ -3,8 +3,6 @@ import React from "react";
 import { Users, Check, X } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
 import AccordionCard from "@/components/AccordionCard";
-import { ChartContainer } from "@/components/ui/chart";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 interface CompetitionAnalysisCardProps {
   competitionAnalysis: AnalysisResults["competitionAnalysis"];
@@ -18,13 +16,6 @@ const CompetitionAnalysisCard: React.FC<CompetitionAnalysisCardProps> = ({ compe
     if (competitionAnalysis.level === "média") return "text-yellow-600";
     return "text-red-600";
   };
-
-  // Dados para o gráfico de pizza de concorrência
-  const pieData = [
-    { name: 'Seu produto', value: 1 },
-    { name: 'Concorrentes', value: competitionAnalysis.competitors }
-  ];
-  const COLORS = ['#4F7CAC', '#C0E0DE'];
 
   // Conteúdo resumido que é sempre exibido
   const summaryContent = (
@@ -161,37 +152,6 @@ const CompetitionAnalysisCard: React.FC<CompetitionAnalysisCardProps> = ({ compe
             <h5 className="font-medium">Longo Prazo (6+ meses)</h5>
             <p className="text-sm text-gray-600">Estratégia de diferenciação através de branding, programa de assinatura exclusivo e construção de comunidade.</p>
           </div>
-        </div>
-      </div>
-
-      <div>
-        <h4 className="text-lg font-medium mb-3">Distribuição de Mercado</h4>
-        <div className="h-64 flex justify-center">
-          <ChartContainer
-            config={{
-              your: { color: "#4F7CAC", label: "Seu produto" },
-              competitors: { color: "#C0E0DE", label: "Concorrentes" },
-            }}
-          >
-            <PieChart>
-              <Pie
-                data={pieData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ChartContainer>
         </div>
       </div>
     </div>

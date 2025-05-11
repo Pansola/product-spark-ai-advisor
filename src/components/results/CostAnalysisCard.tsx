@@ -4,7 +4,7 @@ import { Package } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
 import AccordionCard from "@/components/AccordionCard";
 import { ChartContainer } from "@/components/ui/chart";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Input } from "@/components/ui/input";
 interface CostAnalysisCardProps {
   costAnalysis: NonNullable<AnalysisResults["costAnalysis"]>;
@@ -121,10 +121,10 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
         </div>
       </div>
       
-      {/* Gráfico de lucro por volume - Modificado para remover a legenda dentro do gráfico */}
-      <div className="mt-8 py-[25px]">
-        <h4 className="text-lg font-medium mb-4">Projeção de Lucro por Volume</h4>
-        <div className="h-80 w-full mt-6">
+      {/* Gráfico de lucro por volume - Ajustado com melhor espaçamento e altura */}
+      <div className="mt-12 pb-6">
+        <h4 className="text-lg font-medium mb-6">Projeção de Lucro por Volume</h4>
+        <div className="h-80 w-full mt-8">
           <ChartContainer config={{
           profit: {
             color: "#4F7CAC"
@@ -132,10 +132,10 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
         }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={volumeData} margin={{
-              top: 20,
+              top: 30,
               right: 30,
               left: 20,
-              bottom: 40
+              bottom: 50
             }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" tick={{
@@ -153,8 +153,8 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
           </ChartContainer>
         </div>
         
-        {/* Adicionando a legenda do gráfico aqui, após o gráfico */}
-        <div className="text-center mt-2 mb-6">
+        {/* Legenda do gráfico reposicionada com mais espaço */}
+        <div className="text-center mt-6 mb-8">
           <span className="inline-flex items-center">
             <span className="h-3 w-3 mr-2 bg-[#4F7CAC] rounded-sm"></span>
             <span className="text-sm text-gray-700">Lucro Total</span>
@@ -162,9 +162,9 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
         </div>
       </div>
       
-      {/* Ponto de equilíbrio - Adicionei mais espaçamento */}
+      {/* Ponto de equilíbrio com mais espaçamento */}
       {costAnalysis.breakEvenPoint && <div className="mt-12">
-          <h4 className="text-lg font-medium mb-2">Ponto de Equilíbrio</h4>
+          <h4 className="text-lg font-medium mb-3">Ponto de Equilíbrio</h4>
           <div className="bg-gray-50 p-4 rounded-lg">
             <p className="font-medium text-lg">{costAnalysis.breakEvenPoint} unidades</p>
             <p className="text-sm text-gray-600 mt-1">
@@ -173,9 +173,9 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
           </div>
         </div>}
       
-      {/* Comparativo de margens do nicho - Adicionei mais espaçamento */}
-      {costAnalysis.nicheAverageMargin && <div className="mt-8">
-          <h4 className="text-lg font-medium mb-2">Comparativo com o Nicho</h4>
+      {/* Comparativo de margens do nicho com mais espaçamento */}
+      {costAnalysis.nicheAverageMargin && <div className="mt-12">
+          <h4 className="text-lg font-medium mb-3">Comparativo com o Nicho</h4>
           <div className="flex items-center mt-2">
             <div className="flex-1">
               <div className="h-6 w-full bg-gray-200 rounded-full overflow-hidden relative">
