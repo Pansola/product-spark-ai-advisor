@@ -60,7 +60,7 @@ const ProfitVolumeChart: React.FC<ProfitVolumeChartProps> = ({ profit }) => {
       </div>
       
       {/* Legenda do gráfico reposicionada com mais espaço abaixo */}
-      <div className="text-center mt-12 mb-8">
+      <div className="text-center mt-16 mb-8">
         <span className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full">
           <span className="h-3 w-3 mr-2 bg-[#4F7CAC] rounded-sm"></span>
           <span className="text-sm text-gray-700">Lucro Total</span>
