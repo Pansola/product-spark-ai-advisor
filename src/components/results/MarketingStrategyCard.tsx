@@ -4,14 +4,13 @@ import { AnalysisResults } from "@/types/product";
 import AccordionCard from "@/components/AccordionCard";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+
 interface MarketingStrategyCardProps {
   marketingStrategy: AnalysisResults["marketingStrategy"];
   id?: string;
 }
-const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({
-  marketingStrategy,
-  id
-}) => {
+
+const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketingStrategy, id }) => {
   const [title, setTitle] = useState(marketingStrategy.title);
   const [description, setDescription] = useState(marketingStrategy.description);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -22,10 +21,18 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({
     // Simulando uma chamada de API para geração de conteúdo
     setTimeout(() => {
       if (type === 'title') {
-        const titles = ["Revolucione Seu Dia-a-Dia com Nosso Produto Inovador", "A Solução Definitiva que Você Estava Esperando", "Descubra o Segredo para Otimizar sua Rotina"];
+        const titles = [
+          "Revolucione Seu Dia-a-Dia com Nosso Produto Inovador",
+          "A Solução Definitiva que Você Estava Esperando",
+          "Descubra o Segredo para Otimizar sua Rotina"
+        ];
         setTitle(titles[Math.floor(Math.random() * titles.length)]);
       } else {
-        const descriptions = ["Produto exclusivo que combina qualidade superior e design inovador. Resultados garantidos desde o primeiro uso, com satisfação total ou seu dinheiro de volta.", "Desenvolvido com a mais alta tecnologia e materiais premium. Economize tempo e dinheiro com nossa solução completa que já conquistou milhares de clientes satisfeitos.", "Esqueça as alternativas ineficientes. Nosso produto oferece uma experiência revolucionária, fabricado sob os mais altos padrões de qualidade e com garantia estendida."];
+        const descriptions = [
+          "Produto exclusivo que combina qualidade superior e design inovador. Resultados garantidos desde o primeiro uso, com satisfação total ou seu dinheiro de volta.",
+          "Desenvolvido com a mais alta tecnologia e materiais premium. Economize tempo e dinheiro com nossa solução completa que já conquistou milhares de clientes satisfeitos.",
+          "Esqueça as alternativas ineficientes. Nosso produto oferece uma experiência revolucionária, fabricado sob os mais altos padrões de qualidade e com garantia estendida."
+        ];
         setDescription(descriptions[Math.floor(Math.random() * descriptions.length)]);
       }
       setIsGenerating(false);
@@ -34,11 +41,18 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({
   };
 
   // Conteúdo resumido que é sempre exibido
-  const summaryContent = <div className="space-y-3">
+  const summaryContent = (
+    <div className="space-y-3">
       <div className="space-y-2">
         <div className="flex justify-between items-center">
           <p className="font-medium">Título & Descrição:</p>
-          <Button variant="outline" size="sm" onClick={() => generateNewContent('title')} disabled={isGenerating} className="h-7 px-2">
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => generateNewContent('title')}
+            disabled={isGenerating}
+            className="h-7 px-2"
+          >
             <RefreshCw size={14} className={isGenerating ? "animate-spin" : ""} />
             <span className="ml-1 text-xs">Gerar Novo</span>
           </Button>
@@ -52,37 +66,56 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({
       <div>
         <p className="font-medium">Canais Recomendados:</p>
         <div className="flex flex-wrap gap-2 mt-1">
-          {marketingStrategy.channels.map((channel, index) => <div key={index} className="bg-secondary px-2 py-1 rounded-full text-xs">
+          {marketingStrategy.channels.map((channel, index) => (
+            <div key={index} className="bg-secondary px-2 py-1 rounded-full text-xs">
               {channel}
-            </div>)}
+            </div>
+          ))}
         </div>
       </div>
-    </div>;
+    </div>
+  );
 
   // Conteúdo detalhado que é exibido apenas quando expandido
-  const detailedContent = <div className="space-y-5 bg-[#e4e9eb]">
+  const detailedContent = (
+    <div className="space-y-5">
       {/* Gatilhos mentais */}
-      {marketingStrategy.mentalTriggers && <div>
+      {marketingStrategy.mentalTriggers && (
+        <div>
           <h4 className="text-md font-medium mb-2">Gatilhos Mentais Recomendados</h4>
           <div className="flex flex-wrap gap-2">
-            {marketingStrategy.mentalTriggers.map((trigger, index) => <div key={index} className="bg-highlight text-dark px-3 py-1 rounded-md text-sm font-medium">
+            {marketingStrategy.mentalTriggers.map((trigger, index) => (
+              <div 
+                key={index} 
+                className="bg-highlight text-dark px-3 py-1 rounded-md text-sm font-medium"
+              >
                 {trigger}
-              </div>)}
+              </div>
+            ))}
           </div>
-        </div>}
+        </div>
+      )}
       
       {/* Palavras-chave */}
-      {marketingStrategy.keywords && <div>
+      {marketingStrategy.keywords && (
+        <div>
           <h4 className="text-md font-medium mb-2">Palavras-chave Estratégicas</h4>
           <div className="flex flex-wrap gap-2">
-            {marketingStrategy.keywords.map((keyword, index) => <div key={index} className="bg-gray-100 border border-gray-200 px-2 py-1 rounded-md text-xs">
+            {marketingStrategy.keywords.map((keyword, index) => (
+              <div 
+                key={index} 
+                className="bg-gray-100 border border-gray-200 px-2 py-1 rounded-md text-xs"
+              >
                 {keyword}
-              </div>)}
+              </div>
+            ))}
           </div>
-        </div>}
+        </div>
+      )}
       
       {/* Sugestão visual */}
-      {marketingStrategy.visualSuggestion && <div>
+      {marketingStrategy.visualSuggestion && (
+        <div>
           <h4 className="text-md font-medium mb-2">Sugestão de Criativo Visual</h4>
           <div className="bg-gray-50 p-3 rounded-lg">
             <p className="text-sm">
@@ -92,10 +125,12 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({
               <span className="font-medium">Descrição:</span> {marketingStrategy.visualSuggestion.description}
             </p>
           </div>
-        </div>}
+        </div>
+      )}
       
       {/* Sugestões de copy para anúncios */}
-      {marketingStrategy.adCopy && <div>
+      {marketingStrategy.adCopy && (
+        <div>
           <h4 className="text-md font-medium mb-2">Copy para Anúncios</h4>
           <div className="space-y-2">
             <div>
@@ -111,10 +146,12 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({
               </p>
             </div>
           </div>
-        </div>}
+        </div>
+      )}
       
       {/* Público-alvo */}
-      {marketingStrategy.targetAudience && <div>
+      {marketingStrategy.targetAudience && (
+        <div>
           <h4 className="text-md font-medium mb-2">Público-Alvo</h4>
           <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <p className="text-sm">
@@ -123,30 +160,54 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({
             <div>
               <p className="font-medium text-xs mb-1">Interesses:</p>
               <div className="flex flex-wrap gap-1">
-                {marketingStrategy.targetAudience.interests.map((interest, index) => <div key={index} className="bg-white border border-gray-200 px-2 py-0.5 rounded text-xs">
+                {marketingStrategy.targetAudience.interests.map((interest, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-white border border-gray-200 px-2 py-0.5 rounded text-xs"
+                  >
                     {interest}
-                  </div>)}
+                  </div>
+                ))}
               </div>
             </div>
             <div>
               <p className="font-medium text-xs mb-1">Comportamentos:</p>
               <div className="flex flex-wrap gap-1">
-                {marketingStrategy.targetAudience.behaviors.map((behavior, index) => <div key={index} className="bg-white border border-gray-200 px-2 py-0.5 rounded text-xs">
+                {marketingStrategy.targetAudience.behaviors.map((behavior, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-white border border-gray-200 px-2 py-0.5 rounded text-xs"
+                  >
                     {behavior}
-                  </div>)}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>}
+        </div>
+      )}
       
       {/* Ideia promocional */}
-      {marketingStrategy.promotionalIdea && <div>
+      {marketingStrategy.promotionalIdea && (
+        <div>
           <h4 className="text-md font-medium mb-2">Oferta Promocional Sugerida</h4>
           <div className="bg-dark text-white p-3 rounded-lg font-medium text-sm">
             {marketingStrategy.promotionalIdea}
           </div>
-        </div>}
-    </div>;
-  return <AccordionCard id={id} title="Estratégia de Marketing" icon={<Award size={18} />} summary={summaryContent} details={detailedContent} />;
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <AccordionCard
+      id={id}
+      title="Estratégia de Marketing"
+      icon={<Award size={18} />}
+      summary={summaryContent}
+      details={detailedContent}
+    />
+  );
 };
+
 export default MarketingStrategyCard;
