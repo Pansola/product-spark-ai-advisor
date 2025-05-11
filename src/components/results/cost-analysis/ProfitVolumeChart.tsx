@@ -43,9 +43,11 @@ const ProfitVolumeChart: React.FC<ProfitVolumeChartProps> = ({ profit }) => {
                 width={80} 
               />
               <Tooltip 
-                formatter={value => `R$ ${Number(value).toLocaleString('pt-BR', {
+                formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', {
                   minimumFractionDigits: 2
-                })}`} 
+                })}`}
+                labelFormatter={(name) => `${name}`}
+                contentStyle={{ padding: '10px' }}
               />
               <Bar 
                 dataKey="lucro" 
@@ -58,8 +60,8 @@ const ProfitVolumeChart: React.FC<ProfitVolumeChartProps> = ({ profit }) => {
       </div>
       
       {/* Legenda do gráfico reposicionada com mais espaço */}
-      <div className="text-center mt-6 mb-8">
-        <span className="inline-flex items-center">
+      <div className="text-center mt-8 mb-8">
+        <span className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full">
           <span className="h-3 w-3 mr-2 bg-[#4F7CAC] rounded-sm"></span>
           <span className="text-sm text-gray-700">Lucro Total</span>
         </span>
