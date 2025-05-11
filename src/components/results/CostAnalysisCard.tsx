@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Package } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -6,13 +5,14 @@ import AccordionCard from "@/components/AccordionCard";
 import { ChartContainer } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { Input } from "@/components/ui/input";
-
 interface CostAnalysisCardProps {
   costAnalysis: NonNullable<AnalysisResults["costAnalysis"]>;
   id?: string;
 }
-
-const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id }) => {
+const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
+  costAnalysis,
+  id
+}) => {
   // Estado para os valores editáveis do simulador
   const [productCost, setProductCost] = useState(costAnalysis.estimatedCost.toString());
   const [sellingPrice, setSellingPrice] = useState(costAnalysis.recommendedPrice.toString());
@@ -24,25 +24,30 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
   const parsedPrice = parseFloat(sellingPrice) || 0;
   const parsedShipping = parseFloat(shipping) || 0;
   const parsedTaxes = parseFloat(taxes) || 0;
-  
   const totalCost = parsedCost + parsedShipping + parsedTaxes;
   const profit = parsedPrice - totalCost;
-  const margin = parsedPrice > 0 ? (profit / parsedPrice) * 100 : 0;
-  
+  const margin = parsedPrice > 0 ? profit / parsedPrice * 100 : 0;
+
   // Dados para o gráfico de lucro por volume
-  const volumeData = [
-    { name: '10 unidades', lucro: profit * 10 },
-    { name: '50 unidades', lucro: profit * 50 },
-    { name: '100 unidades', lucro: profit * 100 },
-    { name: '500 unidades', lucro: profit * 500 },
-  ];
+  const volumeData = [{
+    name: '10 unidades',
+    lucro: profit * 10
+  }, {
+    name: '50 unidades',
+    lucro: profit * 50
+  }, {
+    name: '100 unidades',
+    lucro: profit * 100
+  }, {
+    name: '500 unidades',
+    lucro: profit * 500
+  }];
 
   // Verificar se a margem está em zona de risco
   const isLowMargin = margin < 20;
 
   // Conteúdo resumido que é sempre exibido
-  const summaryContent = (
-    <div className="space-y-3">
+  const summaryContent = <div className="space-y-3">
       <p className="text-gray-700">
         <span className="font-medium">Custo estimado do produto:</span> R$ {costAnalysis.estimatedCost.toFixed(2)}
       </p>
@@ -56,16 +61,16 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
         <div className="bg-[#3C474B] text-white p-3 rounded border border-[#9EEFE5]">
           <p className="font-medium">Potencial de lucro por 100 vendas:</p>
           <p className="text-2xl font-bold mt-1 text-[#9EEFE5]">
-            R$ {((costAnalysis.recommendedPrice - costAnalysis.estimatedCost) * 100).toLocaleString('pt-BR', {minimumFractionDigits: 2})}
+            R$ {((costAnalysis.recommendedPrice - costAnalysis.estimatedCost) * 100).toLocaleString('pt-BR', {
+            minimumFractionDigits: 2
+          })}
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 
   // Conteúdo detalhado que é exibido apenas quando expandido
-  const detailedContent = (
-    <div className="space-y-8">
+  const detailedContent = <div className="space-y-8">
       {/* Simulador de margem */}
       <div>
         <h4 className="text-lg font-medium mb-3">Simulador de Margem</h4>
@@ -73,39 +78,19 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium">Custo do Produto (R$)</label>
-              <Input
-                type="number"
-                value={productCost}
-                onChange={(e) => setProductCost(e.target.value)}
-                className="mt-1"
-              />
+              <Input type="number" value={productCost} onChange={e => setProductCost(e.target.value)} className="mt-1" />
             </div>
             <div>
               <label className="text-sm font-medium">Preço de Venda (R$)</label>
-              <Input
-                type="number"
-                value={sellingPrice}
-                onChange={(e) => setSellingPrice(e.target.value)}
-                className="mt-1"
-              />
+              <Input type="number" value={sellingPrice} onChange={e => setSellingPrice(e.target.value)} className="mt-1" />
             </div>
             <div>
               <label className="text-sm font-medium">Custo de Envio (R$)</label>
-              <Input
-                type="number"
-                value={shipping}
-                onChange={(e) => setShipping(e.target.value)}
-                className="mt-1"
-              />
+              <Input type="number" value={shipping} onChange={e => setShipping(e.target.value)} className="mt-1" />
             </div>
             <div>
               <label className="text-sm font-medium">Impostos (R$)</label>
-              <Input
-                type="number"
-                value={taxes}
-                onChange={(e) => setTaxes(e.target.value)}
-                className="mt-1"
-              />
+              <Input type="number" value={taxes} onChange={e => setTaxes(e.target.value)} className="mt-1" />
             </div>
           </div>
           
@@ -129,38 +114,42 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
           </div>
           
           {/* Alerta de margem baixa */}
-          {isLowMargin && (
-            <div className="mt-3 bg-red-50 border border-red-200 text-red-700 p-3 rounded-md text-sm">
+          {isLowMargin && <div className="mt-3 bg-red-50 border border-red-200 text-red-700 p-3 rounded-md text-sm">
               <strong>Alerta:</strong> Margem abaixo de 20% pode ser arriscada. Considere aumentar o preço ou reduzir custos.
-            </div>
-          )}
+            </div>}
         </div>
       </div>
       
       {/* Gráfico de lucro por volume - Aumentei o espaçamento e ajustei a altura */}
-      <div className="mt-8">
+      <div className="mt-8 py-[25px]">
         <h4 className="text-lg font-medium mb-4">Projeção de Lucro por Volume</h4>
         <div className="h-80 w-full mt-6">
-          <ChartContainer
-            config={{
-              profit: { color: "#4F7CAC" },
-            }}
-          >
+          <ChartContainer config={{
+          profit: {
+            color: "#4F7CAC"
+          }
+        }}>
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={volumeData}
-                margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
-              >
+              <BarChart data={volumeData} margin={{
+              top: 20,
+              right: 30,
+              left: 20,
+              bottom: 40
+            }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" tick={{ fontSize: 11 }} height={60} />
-                <YAxis tick={{ fontSize: 11 }} width={80} />
-                <Tooltip formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`} />
-                <Legend wrapperStyle={{ marginTop: "10px" }} />
-                <Bar 
-                  dataKey="lucro" 
-                  name="Lucro Total" 
-                  fill="var(--color-profit, #4F7CAC)" 
-                />
+                <XAxis dataKey="name" tick={{
+                fontSize: 11
+              }} height={60} />
+                <YAxis tick={{
+                fontSize: 11
+              }} width={80} />
+                <Tooltip formatter={value => `R$ ${Number(value).toLocaleString('pt-BR', {
+                minimumFractionDigits: 2
+              })}`} />
+                <Legend wrapperStyle={{
+                marginTop: "10px"
+              }} />
+                <Bar dataKey="lucro" name="Lucro Total" fill="var(--color-profit, #4F7CAC)" />
               </BarChart>
             </ResponsiveContainer>
           </ChartContainer>
@@ -168,8 +157,7 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
       </div>
       
       {/* Ponto de equilíbrio - Adicionei mais espaçamento */}
-      {costAnalysis.breakEvenPoint && (
-        <div className="mt-12">
+      {costAnalysis.breakEvenPoint && <div className="mt-12">
           <h4 className="text-lg font-medium mb-2">Ponto de Equilíbrio</h4>
           <div className="bg-gray-50 p-4 rounded-lg">
             <p className="font-medium text-lg">{costAnalysis.breakEvenPoint} unidades</p>
@@ -177,24 +165,20 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
               Você precisará vender pelo menos esta quantidade de produtos para cobrir todos os custos iniciais.
             </p>
           </div>
-        </div>
-      )}
+        </div>}
       
       {/* Comparativo de margens do nicho - Adicionei mais espaçamento */}
-      {costAnalysis.nicheAverageMargin && (
-        <div className="mt-8">
+      {costAnalysis.nicheAverageMargin && <div className="mt-8">
           <h4 className="text-lg font-medium mb-2">Comparativo com o Nicho</h4>
           <div className="flex items-center mt-2">
             <div className="flex-1">
               <div className="h-6 w-full bg-gray-200 rounded-full overflow-hidden relative">
-                <div 
-                  className="h-full bg-primary rounded-full absolute left-0" 
-                  style={{ width: `${margin}%` }}
-                ></div>
-                <div 
-                  className="h-full w-1 bg-dark absolute" 
-                  style={{ left: `${costAnalysis.nicheAverageMargin}%` }}
-                ></div>
+                <div className="h-full bg-primary rounded-full absolute left-0" style={{
+              width: `${margin}%`
+            }}></div>
+                <div className="h-full w-1 bg-dark absolute" style={{
+              left: `${costAnalysis.nicheAverageMargin}%`
+            }}></div>
               </div>
               <div className="flex justify-between text-xs mt-1">
                 <span>0%</span>
@@ -207,20 +191,8 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({ costAnalysis, id })
               <p className="text-sm font-medium">Média do nicho: {costAnalysis.nicheAverageMargin}%</p>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-  );
-
-  return (
-    <AccordionCard
-      id={id}
-      title="Análise de Custo e Margem"
-      icon={<Package size={18} />}
-      summary={summaryContent}
-      details={detailedContent}
-    />
-  );
+        </div>}
+    </div>;
+  return <AccordionCard id={id} title="Análise de Custo e Margem" icon={<Package size={18} />} summary={summaryContent} details={detailedContent} />;
 };
-
 export default CostAnalysisCard;
