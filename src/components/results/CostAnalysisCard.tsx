@@ -187,7 +187,7 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
               </div>
             </div>
             <div className="ml-4 text-right">
-              <p className="text-sm font-medium">Sua margem: <span className={isLowMargin ? "text-red-600" : "text-green-600"}>{margin.toFixed(1)}%</span></p>
+              <p className="text-sm font-medium text-slate-900">Sua margem: <span className={isLowMargin ? "text-red-600" : "text-green-600"}>{margin.toFixed(1)}%</span></p>
               <p className="text-sm font-medium">Média do nicho: {costAnalysis.nicheAverageMargin}%</p>
             </div>
           </div>
