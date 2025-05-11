@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -165,7 +164,7 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
 
   // Conteúdo detalhado que é exibido apenas quando expandido
   const detailedContent = <div className="space-y-6">
-      <div className="my-0 py-[60px]">
+      <div className="my-0 py-0">
         <h4 className="text-lg font-medium mb-3">Tendência de Demanda</h4>
         <div className="flex flex-wrap gap-2 mb-4">
           <Button size="sm" variant={timeRange === "24h" ? "default" : "outline"} onClick={() => setTimeRange("24h")}>
@@ -222,9 +221,9 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
       </div>
 
       {demandAnalysis.competitorComparison && <div className="mt-10">
-          <h4 className="text-lg font-medium mb-3">Comparação com Produtos Similares</h4>
+          <h4 className="mb-3 py-0 text-lg font-medium text-left my-0">Comparação com Produtos Similares</h4>
           <div className="space-y-3">
-            {demandAnalysis.competitorComparison.map((competitor, index) => <div key={index}>
+            {demandAnalysis.competitorComparison.map((competitor, index) => <div key={index} className="py-0">
                 <div className="flex justify-between mb-1">
                   <span>{competitor.name}</span>
                   <span className="font-medium">{competitor.value}%</span>
