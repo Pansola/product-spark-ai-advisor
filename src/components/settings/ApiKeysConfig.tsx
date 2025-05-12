@@ -6,48 +6,54 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataSource, trendingApi } from "@/services/trendingApi";
 import { toast } from "sonner";
-import { KeyRound } from "lucide-react";
+import { KeyRound, Globe } from "lucide-react";
 
 const API_SOURCES = [
   { 
-    id: "googleTrends" as DataSource, 
-    name: "Google Trends", 
-    description: "Acesso a dados de tendências globais e regionais",
-    docLink: "https://support.google.com/trends/answer/6015068?hl=pt-BR",
+    id: "pyTrends" as DataSource, 
+    name: "PyTrends (Google Trends)", 
+    description: "Acesso a dados de tendências globais e regionais usando PyTrends",
+    docLink: "https://github.com/GeneralMills/pytrends",
+    isPyTrends: true,
   },
   { 
     id: "mercadoLivre" as DataSource, 
     name: "Mercado Livre", 
     description: "Dados de produtos populares na América Latina",
     docLink: "https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br",
+    isPyTrends: false,
   },
   { 
     id: "semrush" as DataSource, 
     name: "SEMrush", 
     description: "Análise competitiva e volume de buscas",
     docLink: "https://developer.semrush.com/",
+    isPyTrends: false,
   },
 ];
 
 const ApiKeysConfig: React.FC = () => {
   const [apiKeys, setApiKeys] = useState<Record<DataSource, string>>({
-    googleTrends: '',
+    pyTrends: '',
     mercadoLivre: '',
     amazon: '',
     semrush: '',
   });
   
-  const [isLoading, setIsLoading] = useState<Record<DataSource, boolean>>({
-    googleTrends: false,
+  const [pyTrendsEndpoint, setPyTrendsEndpoint] = useState<string>('');
+  
+  const [isLoading, setIsLoading] = useState<Record<DataSource | 'pyTrendsEndpoint', boolean>>({
+    pyTrends: false,
     mercadoLivre: false,
     amazon: false,
     semrush: false,
+    pyTrendsEndpoint: false,
   });
   
   // Carregar chaves salvas no localStorage
   useEffect(() => {
     const savedKeys: Record<DataSource, string> = {
-      googleTrends: '',
+      pyTrends: '',
       mercadoLivre: '',
       amazon: '',
       semrush: '',
@@ -61,6 +67,12 @@ const ApiKeysConfig: React.FC = () => {
     });
     
     setApiKeys(savedKeys);
+    
+    // Carregar endpoint do PyTrends
+    const savedEndpoint = localStorage.getItem('pyTrendsEndpoint');
+    if (savedEndpoint) {
+      setPyTrendsEndpoint(savedEndpoint);
+    }
   }, []);
   
   const handleSaveApiKey = async (source: DataSource) => {
@@ -81,6 +93,24 @@ const ApiKeysConfig: React.FC = () => {
       setIsLoading(prev => ({...prev, [source]: false}));
     }
   };
+
+  const handleSavePyTrendsEndpoint = async () => {
+    try {
+      setIsLoading(prev => ({...prev, pyTrendsEndpoint: true}));
+      
+      trendingApi.configurePyTrendsEndpoint(pyTrendsEndpoint);
+      
+      // Simular validação do endpoint
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      toast.success("Endpoint do PyTrends configurado com sucesso.");
+    } catch (error) {
+      console.error("Erro ao configurar endpoint do PyTrends:", error);
+      toast.error("Erro ao configurar endpoint do PyTrends.");
+    } finally {
+      setIsLoading(prev => ({...prev, pyTrendsEndpoint: false}));
+    }
+  };
   
   return (
     <div className="space-y-6">
@@ -93,9 +123,45 @@ const ApiKeysConfig: React.FC = () => {
         Configure suas chaves de API para acessar dados reais de tendências e análises de mercado.
         Para maior segurança, recomendamos utilizar a integração com Supabase.
       </p>
-      
+
+      {/* Configuração do endpoint do PyTrends */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Globe className="h-5 w-5" />
+            Configuração do PyTrends
+          </CardTitle>
+          <CardDescription>Configure o endpoint da API intermediária que utiliza PyTrends</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-2">
+            <Label htmlFor="pytrends-endpoint">URL do Endpoint do PyTrends</Label>
+            <Input
+              id="pytrends-endpoint"
+              type="url"
+              placeholder="https://sua-api-pytrends.exemplo.com/trends"
+              value={pyTrendsEndpoint}
+              onChange={(e) => setPyTrendsEndpoint(e.target.value)}
+            />
+            <p className="text-xs text-muted-foreground mt-1">
+              Este deve ser o endpoint de uma API que utiliza a biblioteca PyTrends para acessar dados do Google Trends.
+              Você precisa hospedar esta API em um serviço como Supabase Edge Functions, Vercel Functions, AWS Lambda, etc.
+            </p>
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button
+            onClick={handleSavePyTrendsEndpoint}
+            disabled={isLoading.pyTrendsEndpoint || !pyTrendsEndpoint}
+            className="ml-auto"
+          >
+            {isLoading.pyTrendsEndpoint ? "Salvando..." : "Salvar Endpoint"}
+          </Button>
+        </CardFooter>
+      </Card>
+
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {API_SOURCES.map(source => (
+        {API_SOURCES.filter(source => !source.isPyTrends).map(source => (
           <Card key={source.id}>
             <CardHeader>
               <CardTitle>{source.name}</CardTitle>

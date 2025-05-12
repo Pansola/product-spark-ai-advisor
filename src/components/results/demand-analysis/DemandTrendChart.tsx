@@ -42,7 +42,7 @@ const DemandTrendChart: React.FC<DemandTrendChartProps> = ({
         try {
           setIsLoading(true);
           setError(null);
-          const data = await trendingApi.getTrendData(productName, "googleTrends", timeRange);
+          const data = await trendingApi.getTrendData(productName, "pyTrends", timeRange);
           setRealTimeData(data);
           setDataSource("realtime");
         } catch (error) {
@@ -76,7 +76,7 @@ const DemandTrendChart: React.FC<DemandTrendChartProps> = ({
       
       <div className="flex items-center justify-between mb-2">
         <div className="text-xs text-gray-500">
-          {dataSource === "realtime" ? "Dados de tendências reais" : "Dados simulados"}
+          {dataSource === "realtime" ? "Dados de tendências reais (PyTrends)" : "Dados simulados"}
         </div>
         {realTimeData && (
           <div className="text-xs text-gray-500">

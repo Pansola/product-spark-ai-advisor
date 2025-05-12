@@ -1,13 +1,13 @@
 
 /**
  * API Service para integração com fontes de dados de tendências de produto
- * Suporta integração com Google Trends, marketplaces e ferramentas de SEO
+ * Suporta integração com PyTrends (alternativa ao Google Trends), marketplaces e ferramentas de SEO
  */
 
 import { toast } from "sonner";
 
 // Tipos para as diferentes fontes de dados
-export type DataSource = "googleTrends" | "mercadoLivre" | "amazon" | "semrush";
+export type DataSource = "pyTrends" | "mercadoLivre" | "amazon" | "semrush";
 
 // Configurações para cada fonte de dados
 export interface DataSourceConfig {
@@ -50,11 +50,12 @@ export interface SearchVolumeData {
 
 class TrendingApiService {
   private apiConfigs: Map<DataSource, DataSourceConfig> = new Map();
+  private pyTrendsEndpoint: string = "https://sua-api-pytrends.exemplo.com/trends";
   
   constructor() {
     // Configuração padrão para fontes de dados simuladas
-    this.apiConfigs.set("googleTrends", {
-      endpoint: "https://trends.google.com/api",
+    this.apiConfigs.set("pyTrends", {
+      endpoint: this.pyTrendsEndpoint,
       rateLimit: 5 // requisições por minuto
     });
     this.apiConfigs.set("mercadoLivre", {
@@ -76,26 +77,51 @@ class TrendingApiService {
     
     toast.success(`Chave de API para ${source} configurada com sucesso`);
   }
+
+  // Configura o endpoint da API PyTrends
+  public configurePyTrendsEndpoint(endpoint: string): void {
+    this.pyTrendsEndpoint = endpoint;
+    const config = this.apiConfigs.get("pyTrends") || {};
+    this.apiConfigs.set("pyTrends", {
+      ...config,
+      endpoint
+    });
+    
+    localStorage.setItem('pyTrendsEndpoint', endpoint);
+    toast.success("Endpoint da API PyTrends configurado com sucesso");
+  }
   
   // Verificar se uma fonte está configurada
   public isSourceConfigured(source: DataSource): boolean {
     const config = this.apiConfigs.get(source);
+    // PyTrends não precisa de apiKey, apenas de um endpoint válido
+    if (source === "pyTrends") {
+      return config !== undefined && config.endpoint !== undefined;
+    }
     return config !== undefined && config.apiKey !== undefined;
   }
   
   // Recuperar dados de tendência para um produto/termo
   public async getTrendData(
     keyword: string, 
-    source: DataSource = "googleTrends", 
+    source: DataSource = "pyTrends", 
     timeRange: TimeRange = "6m"
   ): Promise<TrendData> {
     try {
       // Em produção, isso faria uma chamada para uma Edge Function no Supabase
-      // que por sua vez consultaria as APIs reais com as chaves armazenadas em segurança
+      // que por sua vez executaria o PyTrends e retornaria os resultados
       
-      // Para fins de demonstração, vamos simular dados para cada fonte
-      if (source === "googleTrends") {
-        return await this.simulateGoogleTrendsData(keyword, timeRange);
+      if (source === "pyTrends") {
+        // Verificar se temos um endpoint configurado para PyTrends
+        const config = this.apiConfigs.get("pyTrends");
+        if (config?.endpoint) {
+          // Aqui chamaria a API intermediária PyTrends
+          // Por enquanto vamos simular os dados
+          return await this.simulatePyTrendsData(keyword, timeRange);
+        } else {
+          console.warn("Endpoint PyTrends não configurado, usando dados simulados");
+          return await this.simulatePyTrendsData(keyword, timeRange);
+        }
       }
       
       throw new Error(`Fonte de dados ${source} não implementada`);
@@ -134,7 +160,7 @@ class TrendingApiService {
   // Recuperar volume de busca para um termo
   public async getSearchVolume(
     term: string,
-    source: DataSource = "googleTrends", 
+    source: DataSource = "pyTrends", 
     timeRange: TimeRange = "30d"
   ): Promise<SearchVolumeData> {
     try {
@@ -159,8 +185,8 @@ class TrendingApiService {
     }
   }
   
-  // Simulação de dados do Google Trends
-  private async simulateGoogleTrendsData(keyword: string, timeRange: TimeRange): Promise<TrendData> {
+  // Simulação de dados do PyTrends (similar ao Google Trends)
+  private async simulatePyTrendsData(keyword: string, timeRange: TimeRange): Promise<TrendData> {
     // Gerar dados simulados baseados no período
     let labels: string[] = [];
     let values: number[] = [];
@@ -206,7 +232,7 @@ class TrendingApiService {
     return {
       labels,
       values,
-      source: "googleTrends",
+      source: "pyTrends",
       keyword,
       relatedTerms: [
         `${keyword} preço`, 

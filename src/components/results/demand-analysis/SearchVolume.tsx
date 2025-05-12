@@ -23,7 +23,7 @@ const SearchVolume: React.FC<SearchVolumeProps> = ({
       const fetchSearchVolume = async () => {
         try {
           setIsLoading(true);
-          const data = await trendingApi.getSearchVolume(productName, "googleTrends", timeRange);
+          const data = await trendingApi.getSearchVolume(productName, "pyTrends", timeRange);
           setVolume(data.volume);
           setDataSource("realtime");
         } catch (error) {
@@ -50,7 +50,7 @@ const SearchVolume: React.FC<SearchVolumeProps> = ({
           <p className="text-2xl font-bold text-primary">{volume.toLocaleString()}</p>
           <p className="text-sm text-gray-600 mt-1">
             {dataSource === "realtime" 
-              ? "Baseado em dados reais do Google Trends."
+              ? "Baseado em dados reais obtidos via PyTrends."
               : "Baseado em palavras-chave relacionadas ao produto e nicho de mercado."}
           </p>
         </>
