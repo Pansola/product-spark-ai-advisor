@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -9,7 +8,7 @@ import TimeRangeSelector from "./demand-analysis/TimeRangeSelector";
 import CompetitorComparison from "./demand-analysis/CompetitorComparison";
 import SearchVolume from "./demand-analysis/SearchVolume";
 import { mockDataByPeriod } from "./demand-analysis/mockTimeData";
-import { TimeRange } from "@/services/trendingApi";
+import { TimeRange } from "@/services/trending";
 
 interface DemandAnalysisCardProps {
   demandAnalysis: AnalysisResults["demandAnalysis"];
