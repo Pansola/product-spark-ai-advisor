@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -9,12 +8,10 @@ import TimeRangeSelector from "./demand-analysis/TimeRangeSelector";
 import CompetitorComparison from "./demand-analysis/CompetitorComparison";
 import SearchVolume from "./demand-analysis/SearchVolume";
 import { mockDataByPeriod } from "./demand-analysis/mockTimeData";
-
 interface DemandAnalysisCardProps {
   demandAnalysis: AnalysisResults["demandAnalysis"];
   id?: string;
 }
-
 const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
   demandAnalysis,
   id
@@ -36,32 +33,18 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
   const summaryContent = <DemandScore score={demandAnalysis.score} trend={demandAnalysis.trend} />;
 
   // Conteúdo detalhado que é exibido apenas quando expandido
-  const detailedContent = (
-    <div className="space-y-6">
+  const detailedContent = <div className="space-y-6">
       {/* Seção de Tendência de Demanda com melhor espaçamento */}
-      <div className="mt-4 pt-6">
+      <div className="mt-4 pt-6 py-0 my-0">
         <h4 className="text-lg font-medium mb-5">Tendência de Demanda</h4>
         <TimeRangeSelector timeRange={timeRange} setTimeRange={setTimeRange} />
         <DemandTrendChart data={getFilteredData()} />
       </div>
 
-      {demandAnalysis.competitorComparison && (
-        <CompetitorComparison competitors={demandAnalysis.competitorComparison} />
-      )}
+      {demandAnalysis.competitorComparison && <CompetitorComparison competitors={demandAnalysis.competitorComparison} />}
 
       <SearchVolume volumeBusca={demandAnalysis.volumeBusca} />
-    </div>
-  );
-
-  return (
-    <AccordionCard 
-      id={id} 
-      title="Análise de Demanda" 
-      icon={<TrendingUp size={18} />} 
-      summary={summaryContent} 
-      details={detailedContent} 
-    />
-  );
+    </div>;
+  return <AccordionCard id={id} title="Análise de Demanda" icon={<TrendingUp size={18} />} summary={summaryContent} details={detailedContent} />;
 };
-
 export default DemandAnalysisCard;
