@@ -11,7 +11,7 @@ const CompetitorComparison: React.FC<CompetitorComparisonProps> = ({
   if (!competitors || competitors.length === 0) {
     return null;
   }
-  return <div className="mt-32 my-[80px]">
+  return <div className="mt-32 py-0 my-[70px]">
       <h4 className="mb-4 py-0 text-lg font-medium text-left my-0">Comparação com Produtos Similares</h4>
       <div className="space-y-3">
         {competitors.map((competitor, index) => <div key={index} className="py-0">
