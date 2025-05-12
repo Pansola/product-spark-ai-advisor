@@ -19,8 +19,8 @@ const NicheMarginComparison: React.FC<NicheMarginComparisonProps> = ({
         <div className="flex-1">
           <div className="h-6 w-full bg-gray-200 rounded-full overflow-hidden relative">
             <div 
-              className="h-full bg-primary rounded-full absolute left-0" 
-              style={{ width: `${currentMargin}%` }}
+              className="h-full rounded-full absolute left-0" 
+              style={{ width: `${currentMargin}%`, backgroundColor: "#4F7CAC" }}
             ></div>
             <div 
               className="h-full w-1 bg-dark absolute" 
@@ -35,7 +35,7 @@ const NicheMarginComparison: React.FC<NicheMarginComparisonProps> = ({
         </div>
         <div className="ml-4 text-right">
           <p className="text-sm font-medium text-slate-900">
-            Sua margem: <span className={isLowMargin ? "text-red-600" : "text-green-600"}>
+            Sua margem: <span style={{ color: "#4F7CAC" }}>
               {currentMargin.toFixed(1)}%
             </span>
           </p>
