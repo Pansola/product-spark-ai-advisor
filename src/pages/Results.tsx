@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -59,7 +60,8 @@ const Results = () => {
               {/* Grid com 2 colunas para os cards principais */}
               <div className="grid md:grid-cols-2 gap-6 mt-8">
                 <DemandAnalysisCard 
-                  demandAnalysis={analysisResults.demandAnalysis} 
+                  demandAnalysis={analysisResults.demandAnalysis}
+                  productName={productData.productName}
                   id="demand-analysis" 
                 />
                 <CompetitionAnalysisCard 

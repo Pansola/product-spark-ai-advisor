@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import PlanSelection from "./pages/PlanSelection";
 import ProductForm from "./pages/ProductForm";
 import Results from "./pages/Results";
+import ApiSettings from "./pages/ApiSettings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/plans" element={<PlanSelection />} />
           <Route path="/product-form" element={<ProductForm />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/api-settings" element={<ApiSettings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
