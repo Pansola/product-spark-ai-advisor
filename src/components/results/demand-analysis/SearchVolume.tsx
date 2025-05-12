@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { trendingApi, TimeRange } from "@/services/trendingApi";
+import { trendingApi, TimeRange } from "@/services/trending";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface SearchVolumeProps {

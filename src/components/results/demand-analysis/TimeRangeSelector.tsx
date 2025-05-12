@@ -1,7 +1,6 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { TimeRange } from "@/services/trendingApi";
+import { TimeRange } from "@/services/trending";
 
 interface TimeRangeSelectorProps {
   timeRange: TimeRange;

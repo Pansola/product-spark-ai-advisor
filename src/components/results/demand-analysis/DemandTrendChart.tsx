@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ChartContainer } from "@/components/ui/chart";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { trendingApi, TrendData, TimeRange } from "@/services/trendingApi";
+import { trendingApi, TrendData, TimeRange } from "@/services/trending";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface DemandTrendChartProps {

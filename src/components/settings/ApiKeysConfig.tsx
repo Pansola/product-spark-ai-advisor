@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { DataSource, trendingApi } from "@/services/trendingApi";
+import { DataSource, trendingApi } from "@/services/trending";
 import { toast } from "sonner";
 import { KeyRound, Globe } from "lucide-react";
 
