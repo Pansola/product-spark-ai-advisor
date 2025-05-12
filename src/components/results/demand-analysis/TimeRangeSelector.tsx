@@ -1,10 +1,11 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { TimeRange } from "@/services/trendingApi";
 
 interface TimeRangeSelectorProps {
-  timeRange: string;
-  setTimeRange: (range: string) => void;
+  timeRange: TimeRange;
+  setTimeRange: (range: TimeRange) => void;
 }
 
 const TimeRangeSelector: React.FC<TimeRangeSelectorProps> = ({
