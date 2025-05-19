@@ -1,11 +1,18 @@
 
 import React, { useState } from "react";
-import { Award, RefreshCw, Video } from "lucide-react";
+import { Award } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
 import AccordionCard from "@/components/AccordionCard";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
+
+// Import sub-components
+import ChannelsList from "./marketing-strategy/ChannelsList";
+import MentalTriggers from "./marketing-strategy/MentalTriggers";
+import Keywords from "./marketing-strategy/Keywords";
+import VisualSuggestion from "./marketing-strategy/VisualSuggestion";
+import AdCopy from "./marketing-strategy/AdCopy";
+import TargetAudience from "./marketing-strategy/TargetAudience";
+import PromotionalIdea from "./marketing-strategy/PromotionalIdea";
 
 interface MarketingStrategyCardProps {
   marketingStrategy: AnalysisResults["marketingStrategy"];
@@ -52,31 +59,10 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
     }, 800);
   };
 
-  // Função para gerar vídeo
-  const generateVideo = () => {
-    setIsGenerating(true);
-    toast.info("Gerando vídeo promocional...");
-    
-    // Simulação de geração de vídeo (na vida real seria uma chamada de API)
-    setTimeout(() => {
-      setIsGenerating(false);
-      toast.success("Link para vídeo promocional gerado! Confira em seu e-mail.");
-    }, 1500);
-  };
-
   // Conteúdo resumido que é sempre exibido
   const summaryContent = (
     <div className="space-y-3">      
-      <div className="space-y-2">
-        <p className="font-medium mb-2">Canais Recomendados:</p>
-        <div className="flex flex-wrap gap-2 mt-1">
-          {marketingStrategy.channels.map((channel, index) => (
-            <div key={index} className="bg-secondary px-2 py-1 rounded-full text-xs">
-              {channel}
-            </div>
-          ))}
-        </div>
-      </div>
+      <ChannelsList channels={marketingStrategy.channels} />
     </div>
   );
 
@@ -84,182 +70,35 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
   const detailedContent = (
     <div className="space-y-5">
       {/* Gatilhos mentais */}
-      {marketingStrategy.mentalTriggers && (
-        <Card className="border shadow-sm">
-          <CardContent className="p-4">
-            <h4 className="text-lg font-medium mb-3">Gatilhos Mentais Recomendados</h4>
-            <div className="flex flex-wrap gap-2">
-              {marketingStrategy.mentalTriggers.map((trigger, index) => (
-                <div 
-                  key={index} 
-                  className="bg-highlight text-dark px-3 py-1 rounded-md text-sm font-medium"
-                >
-                  {trigger}
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      <MentalTriggers triggers={marketingStrategy.mentalTriggers || []} />
       
       {/* Palavras-chave */}
-      {marketingStrategy.keywords && (
-        <Card className="border shadow-sm">
-          <CardContent className="p-4">
-            <h4 className="text-lg font-medium mb-3">Palavras-chave Estratégicas</h4>
-            <div className="flex flex-wrap gap-2">
-              {marketingStrategy.keywords.map((keyword, index) => (
-                <div 
-                  key={index} 
-                  className="bg-gray-100 border border-gray-200 px-2 py-1 rounded-md text-xs"
-                >
-                  {keyword}
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      <Keywords keywords={marketingStrategy.keywords || []} />
       
       {/* Sugestão visual */}
-      <Card className="border shadow-sm">
-        <CardContent className="p-4">
-          <div className="flex justify-between items-center mb-3">
-            <h4 className="text-lg font-medium">Sugestão de Criativo Visual</h4>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => generateNewContent('visual')}
-              disabled={isGenerating}
-              className="h-7 px-2"
-            >
-              <RefreshCw size={14} className={isGenerating ? "animate-spin mr-1" : "mr-1"} />
-              <span className="text-xs">Gerar Nova</span>
-            </Button>
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <p className="text-sm font-medium">Formato ideal:</p>
-              <Button 
-                variant="default" 
-                size="sm"
-                onClick={generateVideo}
-                disabled={isGenerating}
-                className="h-7"
-              >
-                <Video size={14} className="mr-1" />
-                <span className="text-xs">Gerar Vídeo</span>
-              </Button>
-            </div>
-            <p className="text-sm bg-gray-50 p-3 rounded-lg">{marketingStrategy.visualSuggestion?.format}</p>
-            
-            <p className="text-sm font-medium">Descrição:</p>
-            <p className="text-sm bg-gray-50 p-3 rounded-lg">{visualDescription}</p>
-          </div>
-        </CardContent>
-      </Card>
+      <VisualSuggestion 
+        format={marketingStrategy.visualSuggestion?.format}
+        description={visualDescription}
+        onGenerateNew={() => generateNewContent('visual')}
+      />
       
       {/* Sugestões de copy para anúncios */}
-      {marketingStrategy.adCopy && (
-        <Card className="border shadow-sm">
-          <CardContent className="p-4">
-            <h4 className="text-lg font-medium mb-3">Copy para Anúncios</h4>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <p className="font-medium text-sm">Versão Curta (Meta/Google Ads):</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => generateNewContent('short')}
-                    disabled={isGenerating}
-                    className="h-7 px-2"
-                  >
-                    <RefreshCw size={14} className={isGenerating ? "animate-spin mr-1" : "mr-1"} />
-                    <span className="text-xs">Gerar Nova</span>
-                  </Button>
-                </div>
-                <p className="bg-white p-3 rounded border border-gray-100 text-sm">
-                  {adCopyShort}
-                </p>
-              </div>
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <p className="font-medium text-sm">Versão Longa (Email/Landing Page):</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => generateNewContent('long')}
-                    disabled={isGenerating}
-                    className="h-7 px-2"
-                  >
-                    <RefreshCw size={14} className={isGenerating ? "animate-spin mr-1" : "mr-1"} />
-                    <span className="text-xs">Gerar Nova</span>
-                  </Button>
-                </div>
-                <p className="bg-white p-3 rounded border border-gray-100 text-sm">
-                  {adCopyLong}
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      <AdCopy 
+        shortCopy={adCopyShort}
+        longCopy={adCopyLong}
+        onGenerateShort={() => generateNewContent('short')}
+        onGenerateLong={() => generateNewContent('long')}
+      />
       
       {/* Público-alvo */}
-      {marketingStrategy.targetAudience && (
-        <Card className="border shadow-sm">
-          <CardContent className="p-4">
-            <h4 className="text-lg font-medium mb-3">Público-Alvo</h4>
-            <div className="space-y-3">
-              <div className="bg-gray-50 p-3 rounded-lg">
-                <p className="text-sm font-medium mb-1">Faixa etária:</p>
-                <p className="text-sm">{marketingStrategy.targetAudience.ageRange}</p>
-              </div>
-              
-              <div>
-                <p className="text-sm font-medium mb-1">Interesses:</p>
-                <div className="flex flex-wrap gap-1">
-                  {marketingStrategy.targetAudience.interests.map((interest, index) => (
-                    <div 
-                      key={index} 
-                      className="bg-white border border-gray-200 px-2 py-0.5 rounded text-xs"
-                    >
-                      {interest}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <p className="text-sm font-medium mb-1">Comportamentos:</p>
-                <div className="flex flex-wrap gap-1">
-                  {marketingStrategy.targetAudience.behaviors.map((behavior, index) => (
-                    <div 
-                      key={index} 
-                      className="bg-white border border-gray-200 px-2 py-0.5 rounded text-xs"
-                    >
-                      {behavior}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      <TargetAudience 
+        ageRange={marketingStrategy.targetAudience?.ageRange}
+        interests={marketingStrategy.targetAudience?.interests}
+        behaviors={marketingStrategy.targetAudience?.behaviors}
+      />
       
       {/* Ideia promocional */}
-      {marketingStrategy.promotionalIdea && (
-        <Card className="border shadow-sm">
-          <CardContent className="p-4">
-            <h4 className="text-lg font-medium mb-2">Oferta Promocional Sugerida</h4>
-            <div className="bg-dark text-white p-3 rounded-lg font-medium text-sm">
-              {marketingStrategy.promotionalIdea}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      <PromotionalIdea promotionalIdea={marketingStrategy.promotionalIdea} />
     </div>
   );
 
