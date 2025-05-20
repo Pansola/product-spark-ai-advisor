@@ -12,7 +12,7 @@ const ChannelsList: React.FC<ChannelsListProps> = ({ channels }) => {
       <p className="font-medium mb-2">Canais Recomendados:</p>
       <div className="flex flex-wrap gap-2 mt-1">
         {channels.map((channel, index) => (
-          <div key={index} className="bg-secondary px-2 py-1 rounded-full text-xs">
+          <div key={index} className="bg-secondary px-3 py-1 rounded-md text-xs font-medium">
             {channel}
           </div>
         ))}

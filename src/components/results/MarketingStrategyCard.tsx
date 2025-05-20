@@ -26,9 +26,12 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
   const [visualDescription, setVisualDescription] = useState(
     marketingStrategy.visualSuggestion?.description || ""
   );
+  const [promotionalIdea, setPromotionalIdea] = useState(
+    marketingStrategy.promotionalIdea || ""
+  );
 
   // Função para gerar novos conteúdos
-  const generateNewContent = (type: 'short' | 'long' | 'visual') => {
+  const generateNewContent = (type: 'short' | 'long' | 'visual' | 'promo') => {
     setIsGenerating(true);
     // Simulando uma chamada de API para geração de conteúdo
     setTimeout(() => {
@@ -46,23 +49,47 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
           "Descubra por que nosso produto está transformando o mercado. Com tecnologia exclusiva e design pensado para você, oferecemos a melhor relação custo-benefício disponível hoje. Não perca mais tempo com soluções medianas. Faça como nossos clientes satisfeitos!"
         ];
         setAdCopyLong(options[Math.floor(Math.random() * options.length)]);
-      } else {
+      } else if (type === 'visual') {
         const options = [
           "Vídeo de 15-30 segundos mostrando o produto em uso, destacando os principais benefícios visuais e com depoimento rápido de usuário satisfeito.",
           "Sequência de antes/depois mostrando a solução do problema, com foco nos resultados práticos e tangíveis para o consumidor.",
           "Demo rápida do produto em situações do dia a dia, enfatizando a praticidade e a economia de tempo que proporciona."
         ];
         setVisualDescription(options[Math.floor(Math.random() * options.length)]);
+      } else if (type === 'promo') {
+        const options = [
+          "Compre 1 e leve 2: Na primeira compra, ganhe um produto adicional grátis para presentear um amigo.",
+          "Oferta especial de lançamento: 30% de desconto nos primeiros 100 pedidos + frete grátis para todo o Brasil.",
+          "Combo exclusivo: Adquira o produto principal com 25% de desconto e ganhe acesso ao curso online complementar."
+        ];
+        setPromotionalIdea(options[Math.floor(Math.random() * options.length)]);
       }
       setIsGenerating(false);
-      toast.success(`Nova ${type === 'short' ? 'versão curta' : type === 'long' ? 'versão longa' : 'sugestão visual'} gerada com sucesso!`);
+      toast.success(`Nova ${type === 'short' ? 'versão curta' : type === 'long' ? 'versão longa' : type === 'promo' ? 'oferta promocional' : 'sugestão visual'} gerada com sucesso!`);
     }, 800);
   };
 
   // Conteúdo resumido que é sempre exibido
   const summaryContent = (
-    <div className="space-y-3">      
+    <div className="space-y-4">      
       <ChannelsList channels={marketingStrategy.channels} />
+      
+      {/* Adicionando gatilhos mentais na visualização resumida */}
+      {marketingStrategy.mentalTriggers && marketingStrategy.mentalTriggers.length > 0 && (
+        <div className="space-y-2 mt-4">
+          <p className="font-medium mb-2">Gatilhos Mentais Recomendados:</p>
+          <div className="flex flex-wrap gap-2">
+            {marketingStrategy.mentalTriggers.map((trigger, index) => (
+              <div
+                key={index}
+                className="bg-highlight text-dark px-3 py-1 rounded-md text-xs font-medium"
+              >
+                {trigger}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 
@@ -98,7 +125,10 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
       />
       
       {/* Ideia promocional */}
-      <PromotionalIdea promotionalIdea={marketingStrategy.promotionalIdea} />
+      <PromotionalIdea 
+        promotionalIdea={promotionalIdea || marketingStrategy.promotionalIdea} 
+        onGenerateNew={() => generateNewContent('promo')}
+      />
     </div>
   );
 

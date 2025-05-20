@@ -39,7 +39,7 @@ const VisualSuggestion: React.FC<VisualSuggestionProps> = ({ format, description
             className="h-7 px-2"
           >
             <RefreshCw size={14} className={isGenerating ? "animate-spin mr-1" : "mr-1"} />
-            <span className="text-xs">Gerar Nova</span>
+            <span className="text-xs">Gerar novamente</span>
           </Button>
         </div>
         <div className="space-y-3">

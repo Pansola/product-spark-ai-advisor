@@ -38,7 +38,7 @@ const AdCopy: React.FC<AdCopyProps> = ({
                   className="h-7 px-2"
                 >
                   <RefreshCw size={14} className={isGenerating ? "animate-spin mr-1" : "mr-1"} />
-                  <span className="text-xs">Gerar Nova</span>
+                  <span className="text-xs">Gerar novamente</span>
                 </Button>
               </div>
               <p className="bg-white p-3 rounded border border-gray-100 text-sm">
@@ -58,7 +58,7 @@ const AdCopy: React.FC<AdCopyProps> = ({
                   className="h-7 px-2"
                 >
                   <RefreshCw size={14} className={isGenerating ? "animate-spin mr-1" : "mr-1"} />
-                  <span className="text-xs">Gerar Nova</span>
+                  <span className="text-xs">Gerar novamente</span>
                 </Button>
               </div>
               <p className="bg-white p-3 rounded border border-gray-100 text-sm">
