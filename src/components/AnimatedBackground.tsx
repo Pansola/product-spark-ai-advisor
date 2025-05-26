@@ -14,12 +14,12 @@ const AnimatedBackground = () => {
     Star
   ];
 
-  const animatedObjects = Array.from({ length: 25 }, (_, i) => {
+  const animatedObjects = Array.from({ length: 20 }, (_, i) => {
     const Icon = shoppingIcons[i % shoppingIcons.length];
-    const randomDelay = Math.random() * 25;
-    const randomDuration = 12 + Math.random() * 8;
-    const randomSize = 20 + Math.random() * 20;
-    const randomOpacity = 0.15 + Math.random() * 0.25;
+    const randomDelay = Math.random() * 20;
+    const randomDuration = 15 + Math.random() * 10;
+    const randomSize = 16 + Math.random() * 16;
+    const randomOpacity = 0.1 + Math.random() * 0.2;
     const randomStartX = Math.random() * 100;
     
     return {
@@ -48,7 +48,7 @@ const AnimatedBackground = () => {
         >
           <obj.Icon 
             size={obj.size} 
-            className="text-white/50 drop-shadow-lg"
+            className="text-white/30"
           />
         </div>
       ))}
