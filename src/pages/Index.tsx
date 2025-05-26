@@ -41,20 +41,20 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Hero content */}
-          <div className="container relative z-10 flex items-center justify-center flex-grow">
-            <div className="max-w-4xl mx-auto text-center">
+          {/* Hero content - Centralized to the left */}
+          <div className="container relative z-10 flex items-center flex-grow">
+            <div className="max-w-2xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards]">
                 Melhor IA para Análise de{' '}
                 <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Produtos E-commerce
                 </span>
               </h1>
-              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto opacity-0 animate-[fade-in_1s_ease-out_0.6s_forwards]">
+              <p className="text-xl text-gray-300 mb-8 opacity-0 animate-[fade-in_1s_ease-out_0.6s_forwards]">
                 Crie análises otimizadas e livres de risco para seus produtos,
                 blogs, anúncios, e-mails e website 10x mais rápido.
               </p>
-              <div className="flex flex-wrap gap-4 justify-center opacity-0 animate-[fade-in_1s_ease-out_1s_forwards]">
+              <div className="flex flex-wrap gap-4 opacity-0 animate-[fade-in_1s_ease-out_1s_forwards]">
                 <Link to="/plans">
                   <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white gap-2 px-8 py-3 text-lg">
                     Começar Análise Gratuita

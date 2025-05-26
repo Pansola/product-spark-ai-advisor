@@ -18,9 +18,9 @@ const FloatingCards3D = () => {
   return (
     <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full flex items-center justify-center pointer-events-none">
       <div className="relative w-full h-full flex items-center justify-center">
-        {/* First Card - Demanda */}
+        {/* First Card - Demanda (now in front) */}
         <div 
-          className="absolute animate-[cardRotate_15s_linear_infinite] transform-gpu"
+          className="absolute animate-[cardRotate_15s_linear_infinite] transform-gpu z-20"
           style={{
             transformStyle: 'preserve-3d',
           }}
@@ -72,9 +72,9 @@ const FloatingCards3D = () => {
           </div>
         </div>
 
-        {/* Second Card - Estrategias de marketing */}
+        {/* Second Card - Estrategias de marketing (now behind) */}
         <div 
-          className="absolute animate-[cardRotate_15s_linear_infinite] transform-gpu"
+          className="absolute animate-[cardRotate_15s_linear_infinite] transform-gpu z-10"
           style={{
             animationDelay: '-7.5s',
             transformStyle: 'preserve-3d',
@@ -83,7 +83,7 @@ const FloatingCards3D = () => {
           <div 
             className="w-80 h-60 bg-gradient-to-br from-purple-800/20 to-pink-900/40 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl transform-gpu flex items-center justify-center relative"
             style={{
-              transform: 'perspective(1000px) rotateX(5deg) translateZ(100px)',
+              transform: 'perspective(1000px) rotateX(5deg) translateZ(-50px)',
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)',
               backdropFilter: 'blur(20px)',
             }}
