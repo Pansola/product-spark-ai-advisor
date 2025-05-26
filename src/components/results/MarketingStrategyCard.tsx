@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Award } from "lucide-react";
 import { AnalysisResults } from "@/types/product";
@@ -73,23 +72,6 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
   const summaryContent = (
     <div className="space-y-4">      
       <ChannelsList channels={marketingStrategy.channels} />
-      
-      {/* Adicionando gatilhos mentais na visualização resumida */}
-      {marketingStrategy.mentalTriggers && marketingStrategy.mentalTriggers.length > 0 && (
-        <div className="space-y-2 mt-4">
-          <p className="font-medium mb-2">Gatilhos Mentais Recomendados:</p>
-          <div className="flex flex-wrap gap-2">
-            {marketingStrategy.mentalTriggers.map((trigger, index) => (
-              <div
-                key={index}
-                className="bg-highlight text-dark px-3 py-1 rounded-md text-xs font-medium"
-              >
-                {trigger}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 
