@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-10">
+    <header className="bg-transparent backdrop-blur-sm border-b border-white/10 sticky top-0 z-10">
       <div className="container flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-2">
           <span className="bg-primary rounded-lg p-1">
@@ -14,17 +14,17 @@ const Header = () => {
               <path d="M15 4h5l-5 16h5"></path>
             </svg>
           </span>
-          <span className="text-xl font-bold text-primary">Product Validator AI</span>
+          <span className="text-xl font-bold text-white">Product Validator AI</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          <Link to="/" className="text-gray-600 hover:text-primary font-medium">Home</Link>
-          <Link to="/plans" className="text-gray-600 hover:text-primary font-medium">Planos</Link>
+          <Link to="/" className="text-white/80 hover:text-white font-medium">Home</Link>
+          <Link to="/plans" className="text-white/80 hover:text-white font-medium">Planos</Link>
         </nav>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" className="hidden md:flex">
+          <Button variant="ghost" className="hidden md:flex text-white/80 hover:text-white hover:bg-white/10">
             Login
           </Button>
-          <Button className="bg-primary hover:bg-primary/90">
+          <Button className="bg-white text-primary hover:bg-white/90">
             Registrar
           </Button>
         </div>
