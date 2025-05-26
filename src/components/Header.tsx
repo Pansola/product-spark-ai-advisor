@@ -4,7 +4,15 @@ import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-10" style={{ background: 'none', backgroundColor: 'transparent' }}>
+    <header 
+      className="sticky top-0 z-10" 
+      style={{ 
+        background: 'transparent', 
+        backgroundColor: 'transparent',
+        backdropFilter: 'none',
+        WebkitBackdropFilter: 'none'
+      }}
+    >
       <div className="container flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-2">
           <span className="bg-primary rounded-lg p-1">
