@@ -69,6 +69,23 @@ export default {
             transform: "translateY(-200px) translateX(0px) rotate(360deg)",
           },
         },
+        "rotate3d": {
+          "0%": {
+            transform: "perspective(1000px) rotateY(0deg) translateZ(0px) translateY(0px)",
+          },
+          "25%": {
+            transform: "perspective(1000px) rotateY(90deg) translateZ(50px) translateY(-20px)",
+          },
+          "50%": {
+            transform: "perspective(1000px) rotateY(180deg) translateZ(0px) translateY(0px)",
+          },
+          "75%": {
+            transform: "perspective(1000px) rotateY(270deg) translateZ(-50px) translateY(20px)",
+          },
+          "100%": {
+            transform: "perspective(1000px) rotateY(360deg) translateZ(0px) translateY(0px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -77,6 +94,7 @@ export default {
         "fade-out": "fade-out 0.2s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
         "float": "float linear infinite",
+        "rotate3d": "rotate3d 20s linear infinite",
       },
       colors: {
         border: "hsl(var(--border))",

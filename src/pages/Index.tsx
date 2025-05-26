@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import FloatingCards3D from "@/components/FloatingCards3D";
 import { ArrowRight, TrendingUp, Users, Search } from "lucide-react";
 
 const Index = () => {
@@ -12,6 +13,7 @@ const Index = () => {
         {/* Hero Section - Full Screen with integrated navigation */}
         <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 h-screen flex flex-col overflow-hidden">
           <AnimatedBackground />
+          <FloatingCards3D />
           
           {/* Navigation integrated in hero */}
           <div className="relative z-10 container flex items-center justify-between py-4">
