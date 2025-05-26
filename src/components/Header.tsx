@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
-    <header className="bg-transparent backdrop-blur-sm border-b border-white/10 sticky top-0 z-10">
+    <header className="bg-transparent sticky top-0 z-10">
       <div className="container flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-2">
           <span className="bg-primary rounded-lg p-1">
@@ -24,7 +24,7 @@ const Header = () => {
           <Button variant="ghost" className="hidden md:flex text-white/80 hover:text-white hover:bg-white/10">
             Login
           </Button>
-          <Button className="bg-white text-primary hover:bg-white/90">
+          <Button className="bg-transparent text-white border border-white/30 hover:bg-white/10">
             Registrar
           </Button>
         </div>
