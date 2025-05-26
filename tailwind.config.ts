@@ -1,4 +1,3 @@
-
 import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import animatePlugin from "tailwindcss-animate";
@@ -86,6 +85,40 @@ export default {
             transform: "perspective(1000px) rotateY(360deg) translateZ(0px) translateY(0px)",
           },
         },
+        "cardRotate": {
+          "0%": {
+            transform: "perspective(1000px) rotateY(0deg) translateY(0px)",
+          },
+          "25%": {
+            transform: "perspective(1000px) rotateY(90deg) translateY(-20px)",
+          },
+          "50%": {
+            transform: "perspective(1000px) rotateY(180deg) translateY(0px)",
+          },
+          "75%": {
+            transform: "perspective(1000px) rotateY(270deg) translateY(20px)",
+          },
+          "100%": {
+            transform: "perspective(1000px) rotateY(360deg) translateY(0px)",
+          },
+        },
+        "textStabilize": {
+          "0%": {
+            transform: "rotateY(0deg)",
+          },
+          "25%": {
+            transform: "rotateY(-90deg)",
+          },
+          "50%": {
+            transform: "rotateY(-180deg)",
+          },
+          "75%": {
+            transform: "rotateY(-270deg)",
+          },
+          "100%": {
+            transform: "rotateY(-360deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +128,8 @@ export default {
         "scale-in": "scale-in 0.3s ease-out",
         "float": "float linear infinite",
         "rotate3d": "rotate3d 20s linear infinite",
+        "cardRotate": "cardRotate 15s linear infinite",
+        "textStabilize": "textStabilize 15s linear infinite",
       },
       colors: {
         border: "hsl(var(--border))",
