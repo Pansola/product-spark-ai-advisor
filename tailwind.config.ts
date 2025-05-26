@@ -1,4 +1,3 @@
-
 import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import animatePlugin from "tailwindcss-animate";
@@ -27,9 +26,11 @@ export default {
         "fade-in": {
           "0%": {
             opacity: "0",
+            transform: "translateY(20px)",
           },
           "100%": {
             opacity: "1",
+            transform: "translateY(0)",
           },
         },
         "fade-out": {
@@ -62,7 +63,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.2s ease-out",
+        "fade-in": "fade-in 0.3s ease-out",
         "fade-out": "fade-out 0.2s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
         "float": "float linear infinite",

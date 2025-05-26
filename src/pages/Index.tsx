@@ -18,17 +18,17 @@ const Index = () => {
           
           <div className="container relative z-10 flex items-center justify-center h-full">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-fade-in">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards]">
                 Melhor IA para Análise de{' '}
                 <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Produtos E-commerce
                 </span>
               </h1>
-              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto opacity-0 animate-[fade-in_1s_ease-out_0.6s_forwards]">
                 Crie análises otimizadas e livres de risco para seus produtos,
                 blogs, anúncios, e-mails e website 10x mais rápido.
               </p>
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-wrap gap-4 justify-center opacity-0 animate-[fade-in_1s_ease-out_1s_forwards]">
                 <Link to="/plans">
                   <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white gap-2 px-8 py-3 text-lg">
                     Começar Análise Gratuita
@@ -42,7 +42,7 @@ const Index = () => {
         {/* Features Section */}
         <section className="py-20 bg-gray-50">
           <div className="container">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 opacity-0 animate-[fade-in_1s_ease-out_1.4s_forwards]">
               <h2 className="text-3xl font-bold text-dark mb-4">Como nossa IA pode ajudar</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Oferecemos uma análise completa baseada em dados para validar seu próximo produto de e-commerce.
@@ -50,7 +50,7 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white p-6 rounded-xl shadow-md">
+              <div className="bg-white p-6 rounded-xl shadow-md opacity-0 animate-[fade-in_1s_ease-out_1.6s_forwards]">
                 <div className="bg-gradient-to-r from-purple-100 to-pink-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                   <TrendingUp className="text-purple-600" size={20} />
                 </div>
@@ -61,7 +61,7 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="bg-white p-6 rounded-xl shadow-md">
+              <div className="bg-white p-6 rounded-xl shadow-md opacity-0 animate-[fade-in_1s_ease-out_1.8s_forwards]">
                 <div className="bg-gradient-to-r from-purple-100 to-pink-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                   <Users className="text-purple-600" size={20} />
                 </div>
@@ -72,7 +72,7 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="bg-white p-6 rounded-xl shadow-md">
+              <div className="bg-white p-6 rounded-xl shadow-md opacity-0 animate-[fade-in_1s_ease-out_2s_forwards]">
                 <div className="bg-gradient-to-r from-purple-100 to-pink-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                   <Search className="text-purple-600" size={20} />
                 </div>
@@ -87,7 +87,7 @@ const Index = () => {
         </section>
         
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-purple-600 to-pink-600 py-16">
+        <section className="bg-gradient-to-r from-purple-600 to-pink-600 py-16 opacity-0 animate-[fade-in_1s_ease-out_2.2s_forwards]">
           <div className="container text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Pronto para validar sua próxima ideia?
