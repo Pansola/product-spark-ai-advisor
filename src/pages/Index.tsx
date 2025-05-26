@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import { ArrowRight, TrendingUp, Users, Search } from "lucide-react";
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
         <section className="relative bg-dark py-24 overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=2215&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-dark to-transparent"></div>
+          <AnimatedBackground />
           
           <div className="container relative z-10">
             <div className="max-w-2xl">

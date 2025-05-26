@@ -50,6 +50,14 @@ export default {
             opacity: "1",
           },
         },
+        "float": {
+          "0%": {
+            transform: "translateY(100vh) translateX(0px) rotate(0deg)",
+          },
+          "100%": {
+            transform: "translateY(-100px) translateX(50px) rotate(360deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -57,6 +65,7 @@ export default {
         "fade-in": "fade-in 0.2s ease-out",
         "fade-out": "fade-out 0.2s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
+        "float": "float linear infinite",
       },
       colors: {
         border: "hsl(var(--border))",
