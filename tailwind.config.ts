@@ -53,10 +53,19 @@ export default {
         },
         "float": {
           "0%": {
-            transform: "translateY(100vh) translateX(0px) rotate(0deg)",
+            transform: "translateY(0px) translateX(0px) rotate(0deg)",
+          },
+          "25%": {
+            transform: "translateY(-50px) translateX(25px) rotate(90deg)",
+          },
+          "50%": {
+            transform: "translateY(-100px) translateX(-25px) rotate(180deg)",
+          },
+          "75%": {
+            transform: "translateY(-150px) translateX(50px) rotate(270deg)",
           },
           "100%": {
-            transform: "translateY(-100px) translateX(50px) rotate(360deg)",
+            transform: "translateY(-200px) translateX(0px) rotate(360deg)",
           },
         },
       },
@@ -102,7 +111,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom colors
         dark: "#3C474B",
         highlight: "#9EEFE5",
       },
