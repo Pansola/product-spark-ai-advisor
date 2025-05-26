@@ -12,11 +12,11 @@ const Index = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-24 overflow-hidden">
+        {/* Hero Section - Full Screen */}
+        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 h-screen flex items-center justify-center overflow-hidden">
           <AnimatedBackground />
           
-          <div className="container relative z-10">
+          <div className="container relative z-10 flex items-center justify-center h-full">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-fade-in">
                 Melhor IA para Análise de{' '}
