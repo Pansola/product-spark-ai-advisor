@@ -14,8 +14,8 @@ const Index = () => {
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative bg-dark py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=2215&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-dark to-transparent"></div>
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-dark/80 to-dark/60"></div>
           <AnimatedBackground />
           
           <div className="container relative z-10">
