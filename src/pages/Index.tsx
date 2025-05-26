@@ -1,7 +1,6 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { ArrowRight, TrendingUp, Users, Search } from "lucide-react";
@@ -9,14 +8,39 @@ import { ArrowRight, TrendingUp, Users, Search } from "lucide-react";
 const Index = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      
       <main className="flex-grow">
-        {/* Hero Section - Full Screen */}
-        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 h-screen flex items-center justify-center overflow-hidden">
+        {/* Hero Section - Full Screen with integrated navigation */}
+        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 h-screen flex flex-col overflow-hidden">
           <AnimatedBackground />
           
-          <div className="container relative z-10 flex items-center justify-center h-full">
+          {/* Navigation integrated in hero */}
+          <div className="relative z-10 container flex items-center justify-between py-4">
+            <Link to="/" className="flex items-center gap-2">
+              <span className="bg-primary rounded-lg p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                  <path d="m7.9 20 6.2-16h2l-6.2 16Z"></path>
+                  <path d="M4 14h8"></path>
+                  <path d="M15 4h5l-5 16h5"></path>
+                </svg>
+              </span>
+              <span className="text-xl font-bold text-white">Product Validator AI</span>
+            </Link>
+            <nav className="hidden md:flex items-center gap-8">
+              <Link to="/" className="text-white/80 hover:text-white font-medium">Home</Link>
+              <Link to="/plans" className="text-white/80 hover:text-white font-medium">Planos</Link>
+            </nav>
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" className="hidden md:flex text-white/80 hover:text-white hover:bg-white/10">
+                Login
+              </Button>
+              <Button className="bg-transparent text-white border border-white/30 hover:bg-white/10">
+                Registrar
+              </Button>
+            </div>
+          </div>
+          
+          {/* Hero content */}
+          <div className="container relative z-10 flex items-center justify-center flex-grow">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards]">
                 Melhor IA para Análise de{' '}
