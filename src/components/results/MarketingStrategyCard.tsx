@@ -72,6 +72,22 @@ const MarketingStrategyCard: React.FC<MarketingStrategyCardProps> = ({ marketing
   const summaryContent = (
     <div className="space-y-4">      
       <ChannelsList channels={marketingStrategy.channels} />
+      
+      {/* Resumo da estratégia */}
+      <div className="space-y-2">
+        <p className="font-medium mb-2">Resumo da Estratégia:</p>
+        <div className="bg-gray-50 p-3 rounded-lg">
+          <p className="text-sm text-gray-700 mb-2">
+            <strong>Público-alvo:</strong> {marketingStrategy.targetAudience?.ageRange || "Não definido"}
+          </p>
+          <p className="text-sm text-gray-700 mb-2">
+            <strong>Principais gatilhos:</strong> {marketingStrategy.mentalTriggers?.slice(0, 2).join(", ") || "Não definidos"}
+          </p>
+          <p className="text-sm text-gray-700">
+            <strong>Palavras-chave principais:</strong> {marketingStrategy.keywords?.slice(0, 3).join(", ") || "Não definidas"}
+          </p>
+        </div>
+      </div>
     </div>
   );
 
