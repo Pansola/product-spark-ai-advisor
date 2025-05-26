@@ -1,3 +1,4 @@
+
 import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import animatePlugin from "tailwindcss-animate";
@@ -120,7 +121,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Poppins", ...fontFamily.sans],
+        sans: ["Gilroy", ...fontFamily.sans],
       },
     },
   },
