@@ -71,31 +71,31 @@ const PlanSelection = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="absolute top-6 left-6 z-10">
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
         <Button 
           variant="outline" 
           size="sm"
           onClick={() => navigate(-1)}
-          className="border-gray-200 hover:border-gray-300 bg-white/80 backdrop-blur-sm"
+          className="border-gray-200 hover:border-gray-300 bg-white/80 backdrop-blur-sm text-sm"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Voltar
         </Button>
       </div>
 
-      <main className="flex-grow py-12 bg-gray-50">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="text-3xl font-bold text-dark mb-4">
+      <main className="flex-grow py-8 sm:py-12 bg-gray-50">
+        <div className="container px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl font-bold text-dark mb-4">
               Escolha o plano ideal para você
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 px-4">
               Todos os planos oferecem acesso à nossa análise de IA para validar seu produto.
               Selecione aquele que melhor atende suas necessidades.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
             {plans.map((plan, index) => (
               <div key={index} className="h-full">
                 <PlanCard 
@@ -106,9 +106,9 @@ const PlanSelection = () => {
             ))}
           </div>
           
-          <div className="max-w-3xl mx-auto mt-16 bg-white p-6 rounded-xl shadow">
-            <h3 className="text-xl font-semibold mb-4">Compromisso com sua satisfação</h3>
-            <p className="text-gray-600">
+          <div className="max-w-3xl mx-auto mt-12 sm:mt-16 bg-white p-4 sm:p-6 rounded-xl shadow mx-4">
+            <h3 className="text-lg sm:text-xl font-semibold mb-4">Compromisso com sua satisfação</h3>
+            <p className="text-gray-600 text-sm sm:text-base">
               Todos os planos pagos vêm com garantia de devolução do dinheiro em até 7 dias. 
               Se você não ficar satisfeito com nossa análise, devolvemos seu investimento.
             </p>

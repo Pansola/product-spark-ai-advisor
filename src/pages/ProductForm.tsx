@@ -49,24 +49,24 @@ const ProductForm = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="absolute top-6 left-6 z-10">
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
         <Button 
           variant="outline" 
           size="sm"
           onClick={() => navigate(-1)}
-          className="border-gray-200 hover:border-gray-300 bg-white/80 backdrop-blur-sm"
+          className="border-gray-200 hover:border-gray-300 bg-white/80 backdrop-blur-sm text-sm"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Voltar
         </Button>
       </div>
 
-      <main className="flex-grow py-12 bg-gray-50">
-        <div className="container max-w-3xl">
+      <main className="flex-grow py-8 sm:py-12 bg-gray-50">
+        <div className="container max-w-3xl px-4 sm:px-6">
           <div className="bg-white rounded-xl shadow-md overflow-hidden">
             <ProductFormHeader selectedPlan={selectedPlan} />
             
-            <form onSubmit={handleSubmit(onSubmit)} className="p-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="p-4 sm:p-6">
               <div className="space-y-6">
                 <div>
                   <PlanBadge plan={selectedPlan} />
