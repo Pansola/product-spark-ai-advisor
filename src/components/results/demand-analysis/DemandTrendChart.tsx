@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { ChartContainer } from "@/components/ui/chart";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
@@ -34,6 +35,7 @@ const DemandTrendChart: React.FC<DemandTrendChartProps> = ({
     return initialData;
   };
   
+  // Tentar buscar dados reais quando o nome do produto ou o intervalo de tempo mudar
   useEffect(() => {
     if (productName) {
       const fetchRealTimeData = async () => {
@@ -58,14 +60,14 @@ const DemandTrendChart: React.FC<DemandTrendChartProps> = ({
   
   if (isLoading) {
     return (
-      <div className="h-[300px] sm:h-[400px] w-full">
+      <div className="mt-8 h-64 sm:h-80 w-full">
         <Skeleton className="h-full w-full" />
       </div>
     );
   }
   
   return (
-    <div className="w-full">
+    <div className="mt-8 h-64 sm:h-80 w-full">
       {error && (
         <div className="text-amber-600 text-sm mb-2 p-2 bg-amber-50 rounded-md border border-amber-100">
           {error}
@@ -83,51 +85,49 @@ const DemandTrendChart: React.FC<DemandTrendChartProps> = ({
         )}
       </div>
       
-      <div className="h-[300px] sm:h-[400px] w-full">
-        <ChartContainer config={{
-          trend: {
-            color: "#4F7CAC"
-          }
-        }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart 
-              data={getChartData()} 
-              margin={{
-                top: 10,
-                right: 15,
-                left: 5,
-                bottom: 5
+      <ChartContainer config={{
+        trend: {
+          color: "#4F7CAC"
+        }
+      }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart 
+            data={getChartData()} 
+            margin={{
+              top: 20,
+              right: 10,
+              left: 10,
+              bottom: 40
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis 
+              dataKey="month" 
+              tick={{ fontSize: 10 }} 
+              angle={-45} 
+              textAnchor="end"
+              height={60} 
+              interval={0}
+            />
+            <YAxis tick={{ fontSize: 10 }} width={40} />
+            <Tooltip 
+              contentStyle={{ 
+                fontSize: '12px',
+                padding: '8px'
               }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis 
-                dataKey="month" 
-                tick={{ fontSize: 10 }} 
-                angle={-45} 
-                textAnchor="end"
-                height={50} 
-                interval={0}
-              />
-              <YAxis tick={{ fontSize: 10 }} width={40} />
-              <Tooltip 
-                contentStyle={{ 
-                  fontSize: '12px',
-                  padding: '8px'
-                }}
-              />
-              <Line 
-                name="Procuras" 
-                type="monotone" 
-                dataKey="value" 
-                stroke="var(--color-trend, #4F7CAC)" 
-                strokeWidth={2} 
-                dot={{ r: 3 }} 
-                activeDot={{ r: 5 }} 
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </ChartContainer>
-      </div>
+            />
+            <Line 
+              name="Procuras" 
+              type="monotone" 
+              dataKey="value" 
+              stroke="var(--color-trend, #4F7CAC)" 
+              strokeWidth={2} 
+              dot={{ r: 3 }} 
+              activeDot={{ r: 5 }} 
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </ChartContainer>
     </div>
   );
 };
