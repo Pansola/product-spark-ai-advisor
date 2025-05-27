@@ -46,7 +46,7 @@ const Index = () => {
             <div className="max-w-2xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards]">
                 Melhor IA para Análise de{' '}
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent whitespace-nowrap">
                   Produtos E-commerce
                 </span>
               </h1>
@@ -113,7 +113,7 @@ const Index = () => {
         </section>
         
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-purple-600 to-pink-600 py-16 opacity-0 animate-[fade-in_1s_ease-out_2.2s_forwards]">
+        <section className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 py-16 opacity-0 animate-[fade-in_1s_ease-out_2.2s_forwards]">
           <div className="container text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Pronto para validar sua próxima ideia?
@@ -123,7 +123,7 @@ const Index = () => {
               Nossa IA está pronta para analisar seu produto.
             </p>
             <Link to="/plans">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 text-lg">
+              <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 text-lg">
                 Começar Análise Gratuita
               </Button>
             </Link>
