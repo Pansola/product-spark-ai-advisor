@@ -40,22 +40,22 @@ const Results = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow py-8 sm:py-12 bg-gray-50">
-        <div className="container px-4 sm:px-6">
+      <main className="flex-grow py-12 bg-gray-50">
+        <div className="container">
           <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
             <ResultsHeader 
               productData={productData} 
               selectedPlan={selectedPlan} 
             />
             
-            <div className="p-4 sm:p-6">
+            <div className="p-6">
               <ScoreSummary 
                 analysisResults={analysisResults} 
                 productData={productData} 
               />
               
-              {/* Grid responsivo para os cards principais */}
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+              {/* Grid com 2 colunas para os cards principais */}
+              <div className="grid md:grid-cols-2 gap-6 mt-8">
                 <DemandAnalysisCard 
                   demandAnalysis={analysisResults.demandAnalysis}
                   productName={productData.productName}
@@ -78,8 +78,8 @@ const Results = () => {
                 )}
               </div>
               
-              {/* Card de produtos relacionados - largura total */}
-              <div className="mt-4 sm:mt-6">
+              {/* Grid de 1 coluna (largura total) para o card de produtos relacionados */}
+              <div className="mt-6">
                 {selectedPlan === "premium" && analysisResults.relatedProducts && (
                   <div className="w-full">
                     <RelatedProductsCard 

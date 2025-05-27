@@ -12,9 +12,9 @@ const ApiSettings: React.FC = () => {
   
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow py-8 sm:py-12 bg-gray-50">
-        <div className="container px-4 sm:px-6">
-          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 p-4 sm:p-6">
+      <main className="flex-grow py-12 bg-gray-50">
+        <div className="container">
+          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 p-6">
             <div className="mb-6 flex items-center">
               <Button 
                 variant="ghost" 
@@ -24,14 +24,14 @@ const ApiSettings: React.FC = () => {
               >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
-              <h1 className="text-xl sm:text-2xl font-bold">Configurações de Integração</h1>
+              <h1 className="text-2xl font-bold">Configurações de Integração</h1>
             </div>
             
             <Tabs defaultValue="api-keys" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="api-keys" className="text-xs sm:text-sm">Chaves de API</TabsTrigger>
-                <TabsTrigger value="data-sources" className="text-xs sm:text-sm">Fontes de Dados</TabsTrigger>
-                <TabsTrigger value="sync" className="text-xs sm:text-sm">Sincronização</TabsTrigger>
+              <TabsList>
+                <TabsTrigger value="api-keys">Chaves de API</TabsTrigger>
+                <TabsTrigger value="data-sources">Fontes de Dados</TabsTrigger>
+                <TabsTrigger value="sync">Sincronização</TabsTrigger>
               </TabsList>
               
               <TabsContent value="api-keys" className="space-y-6">
@@ -40,13 +40,13 @@ const ApiSettings: React.FC = () => {
               
               <TabsContent value="data-sources">
                 <div className="p-6 text-center text-muted-foreground">
-                  <p className="text-sm sm:text-base">Configurações de fontes de dados serão adicionadas em breve.</p>
+                  <p>Configurações de fontes de dados serão adicionadas em breve.</p>
                 </div>
               </TabsContent>
               
               <TabsContent value="sync">
                 <div className="p-6 text-center text-muted-foreground">
-                  <p className="text-sm sm:text-base">Configurações de sincronização serão adicionadas em breve.</p>
+                  <p>Configurações de sincronização serão adicionadas em breve.</p>
                 </div>
               </TabsContent>
             </Tabs>

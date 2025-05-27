@@ -41,8 +41,8 @@ const DemandAnalysisCard: React.FC<DemandAnalysisCardProps> = ({
   // Conteúdo detalhado que é exibido apenas quando expandido
   const detailedContent = <div className="space-y-6">
       {/* Seção de Tendência de Demanda com melhor espaçamento */}
-      <div className="mt-4 pt-4 sm:pt-6">
-        <h4 className="text-base sm:text-lg font-medium mb-3 sm:mb-5">Tendência de Demanda</h4>
+      <div className="mt-4 pt-6 my-0 py-[50px]">
+        <h4 className="text-lg font-medium mb-5">Tendência de Demanda</h4>
         <TimeRangeSelector timeRange={timeRange} setTimeRange={setTimeRange} />
         <DemandTrendChart 
           data={getFilteredData()} 
