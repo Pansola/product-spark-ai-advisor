@@ -3,12 +3,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { ArrowLeft } from "lucide-react";
 
 import Footer from "@/components/Footer";
 import ProductFormHeader from "@/components/product/ProductFormHeader";
 import PlanBadge from "@/components/product/PlanBadge";
 import ProductFormFields from "@/components/product/ProductFormFields";
 import SubmitButton from "@/components/product/SubmitButton";
+import { Button } from "@/components/ui/button";
 import { generateMockResults } from "@/utils/mockDataGenerator";
 import { ProductFormData } from "@/types/product";
 
@@ -47,6 +49,18 @@ const ProductForm = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <div className="absolute top-6 left-6 z-10">
+        <Button 
+          variant="outline" 
+          size="sm"
+          onClick={() => navigate(-1)}
+          className="border-gray-200 hover:border-gray-300 bg-white/80 backdrop-blur-sm"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Voltar
+        </Button>
+      </div>
+
       <main className="flex-grow py-12 bg-gray-50">
         <div className="container max-w-3xl">
           <div className="bg-white rounded-xl shadow-md overflow-hidden">
