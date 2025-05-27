@@ -1,6 +1,5 @@
 
 import React from "react";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ApiKeysConfig from "@/components/settings/ApiKeysConfig";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,8 +12,6 @@ const ApiSettings: React.FC = () => {
   
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      
       <main className="flex-grow py-12 bg-gray-50">
         <div className="container">
           <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 p-6">

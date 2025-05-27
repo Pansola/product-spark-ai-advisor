@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductFormHeader from "@/components/product/ProductFormHeader";
 import PlanBadge from "@/components/product/PlanBadge";
@@ -48,8 +47,6 @@ const ProductForm = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      
       <main className="flex-grow py-12 bg-gray-50">
         <div className="container max-w-3xl">
           <div className="bg-white rounded-xl shadow-md overflow-hidden">

@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ProductData, AnalysisResults } from "@/types/product";
 import ResultsHeader from "@/components/results/ResultsHeader";
@@ -41,8 +40,6 @@ const Results = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      
       <main className="flex-grow py-12 bg-gray-50">
         <div className="container">
           <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">

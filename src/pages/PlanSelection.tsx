@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PlanCard, { PlanFeature, PlanProps } from "@/components/PlanCard";
 
@@ -70,8 +69,6 @@ const PlanSelection = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      
       <main className="flex-grow py-12 bg-gray-50">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-12">
