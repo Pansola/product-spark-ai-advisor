@@ -12,7 +12,6 @@ const Index = () => {
         {/* Hero Section - Full Screen with integrated navigation */}
         <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 h-screen flex flex-col overflow-hidden">
           <AnimatedBackground />
-          <FloatingCards3D />
           
           {/* Navigation integrated in hero */}
           <div className="relative z-10 container flex items-center justify-between py-4 px-4 sm:px-6">
@@ -31,19 +30,24 @@ const Index = () => {
               <Link to="/plans" className="text-white/80 hover:text-white font-medium">Planos</Link>
             </nav>
             <div className="flex items-center gap-2 sm:gap-4">
-              <Button variant="ghost" className="hidden sm:flex text-white/80 hover:text-white hover:bg-white/10 text-sm">
+              <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10 text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-2">
                 Login
               </Button>
-              <Button className="bg-transparent text-white border border-white/30 hover:bg-white/10 text-sm px-3 py-2 sm:px-4">
+              <Button className="bg-transparent text-white border border-white/30 hover:bg-white/10 text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-2">
                 Registrar
               </Button>
             </div>
           </div>
           
-          {/* Hero content - Centralized to the left */}
+          {/* Mobile: Cards 3D positioned behind content */}
+          <div className="md:hidden absolute inset-0 flex items-center justify-center opacity-30">
+            <FloatingCards3D />
+          </div>
+          
+          {/* Hero content - Centralized on mobile, left-aligned on desktop */}
           <div className="container relative z-10 flex items-center flex-grow px-4 sm:px-6">
-            <div className="max-w-2xl">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white leading-tight mb-4 sm:mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards] text-left font-extralight">
+            <div className="w-full max-w-2xl text-center md:text-left mx-auto md:mx-0">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white leading-tight mb-4 sm:mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards] font-extralight">
                 Melhor IA para Análise de{' '}
                 <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent block sm:inline text-4xl sm:text-5xl lg:text-7xl">
                   Produtos E-commerce
@@ -53,7 +57,7 @@ const Index = () => {
                 Crie análises otimizadas e livres de risco para seus produtos,
                 blogs, anúncios, e-mails e website 10x mais rápido.
               </p>
-              <div className="flex flex-wrap gap-4 opacity-0 animate-[fade-in_1s_ease-out_1s_forwards]">
+              <div className="flex flex-wrap gap-4 opacity-0 animate-[fade-in_1s_ease-out_1s_forwards] justify-center md:justify-start">
                 <Link to="/plans">
                   <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white gap-2 px-6 py-3 text-base sm:px-8 sm:text-lg w-full sm:w-auto">
                     Começar Análise Gratuita
@@ -61,6 +65,11 @@ const Index = () => {
                 </Link>
               </div>
             </div>
+          </div>
+          
+          {/* Desktop: Cards 3D positioned on the right */}
+          <div className="hidden md:block">
+            <FloatingCards3D />
           </div>
         </section>
         

@@ -10,7 +10,6 @@ import ProductForm from "./pages/ProductForm";
 import Results from "./pages/Results";
 import ApiSettings from "./pages/ApiSettings";
 import NotFound from "./pages/NotFound";
-import MobilePreview from "./components/MobilePreview";
 
 const queryClient = new QueryClient();
 
@@ -20,17 +19,15 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <MobilePreview>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/plans" element={<PlanSelection />} />
-            <Route path="/product-form" element={<ProductForm />} />
-            <Route path="/results" element={<Results />} />
-            <Route path="/api-settings" element={<ApiSettings />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </MobilePreview>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/plans" element={<PlanSelection />} />
+          <Route path="/product-form" element={<ProductForm />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/api-settings" element={<ApiSettings />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
