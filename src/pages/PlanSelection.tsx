@@ -1,8 +1,10 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import Footer from "@/components/Footer";
 import PlanCard, { PlanFeature, PlanProps } from "@/components/PlanCard";
+import { Button } from "@/components/ui/button";
 
 const PlanSelection = () => {
   const navigate = useNavigate();
@@ -69,6 +71,18 @@ const PlanSelection = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <div className="absolute top-6 left-6 z-10">
+        <Button 
+          variant="outline" 
+          size="sm"
+          onClick={() => navigate(-1)}
+          className="border-gray-200 hover:border-gray-300 bg-white/80 backdrop-blur-sm"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Voltar
+        </Button>
+      </div>
+
       <main className="flex-grow py-12 bg-gray-50">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-12">
