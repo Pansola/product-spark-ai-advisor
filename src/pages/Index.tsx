@@ -1,14 +1,11 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import FloatingCards3D from "@/components/FloatingCards3D";
 import { ArrowRight, TrendingUp, Users, Search } from "lucide-react";
-
 const Index = () => {
-  return (
-    <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
         {/* Hero Section - Full Screen with integrated navigation */}
         <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 h-screen flex flex-col overflow-hidden">
@@ -44,9 +41,9 @@ const Index = () => {
           {/* Hero content - Centralized to the left */}
           <div className="container relative z-10 flex items-center flex-grow">
             <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards]">
+              <h1 className="text-4xl md:text-5xl text-white leading-tight mb-6 opacity-0 animate-[fade-in_1s_ease-out_0.2s_forwards] text-left font-extralight lg:text-7xl">
                 Melhor IA para Análise de{' '}
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent whitespace-nowrap">
+                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent whitespace-nowrap text-7xl">
                   Produtos E-commerce
                 </span>
               </h1>
@@ -132,8 +129,6 @@ const Index = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
