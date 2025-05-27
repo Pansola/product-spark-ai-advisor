@@ -10,16 +10,16 @@ interface ProfitVolumeChartProps {
 const ProfitVolumeChart: React.FC<ProfitVolumeChartProps> = ({ profit }) => {
   // Dados para o gráfico de lucro por volume
   const volumeData = [
-    { name: '10 unidades', lucro: profit * 10 },
-    { name: '50 unidades', lucro: profit * 50 },
-    { name: '100 unidades', lucro: profit * 100 },
-    { name: '500 unidades', lucro: profit * 500 }
+    { name: '10 un.', lucro: profit * 10 },
+    { name: '50 un.', lucro: profit * 50 },
+    { name: '100 un.', lucro: profit * 100 },
+    { name: '500 un.', lucro: profit * 500 }
   ];
 
   return (
     <div>
-      <h4 className="text-lg font-medium mb-6">Projeção de Lucro por Volume</h4>
-      <div className="h-80 w-full mt-8">
+      <h4 className="text-base sm:text-lg font-medium mb-4 sm:mb-6">Projeção de Lucro por Volume</h4>
+      <div className="h-64 sm:h-80 w-full mt-4 sm:mt-8">
         <ChartContainer config={{
           profit: {
             color: "#4F7CAC"
@@ -27,27 +27,30 @@ const ProfitVolumeChart: React.FC<ProfitVolumeChartProps> = ({ profit }) => {
         }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={volumeData} margin={{
-              top: 30,
-              right: 30,
-              left: 20,
-              bottom: 50
+              top: 20,
+              right: 10,
+              left: 10,
+              bottom: 40
             }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis 
                 dataKey="name" 
-                tick={{ fontSize: 11 }} 
-                height={60} 
+                tick={{ fontSize: 10 }} 
+                height={50} 
               />
               <YAxis 
-                tick={{ fontSize: 11 }} 
-                width={80} 
+                tick={{ fontSize: 10 }} 
+                width={60} 
               />
               <Tooltip 
                 formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', {
                   minimumFractionDigits: 2
                 })}`}
                 labelFormatter={(name) => `${name}`}
-                contentStyle={{ padding: '10px' }}
+                contentStyle={{ 
+                  padding: '8px',
+                  fontSize: '12px'
+                }}
               />
               <Bar 
                 dataKey="lucro" 
@@ -60,10 +63,10 @@ const ProfitVolumeChart: React.FC<ProfitVolumeChartProps> = ({ profit }) => {
       </div>
       
       {/* Legenda do gráfico reposicionada com mais espaço abaixo */}
-      <div className="text-center mt-16 mb-8">
+      <div className="text-center mt-8 sm:mt-16 mb-4 sm:mb-8">
         <span className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full">
           <span className="h-3 w-3 mr-2 bg-[#4F7CAC] rounded-sm"></span>
-          <span className="text-sm text-gray-700">Lucro Total</span>
+          <span className="text-xs sm:text-sm text-gray-700">Lucro Total</span>
         </span>
       </div>
     </div>
