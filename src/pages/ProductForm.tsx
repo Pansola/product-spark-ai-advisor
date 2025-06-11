@@ -13,6 +13,7 @@ import SubmitButton from "@/components/product/SubmitButton";
 import { Button } from "@/components/ui/button";
 import { generateMockResults } from "@/utils/mockDataGenerator";
 import { ProductFormData } from "@/types/product";
+import { N8nService } from "@/services/n8nService";
 
 const ProductForm = () => {
   const navigate = useNavigate();
@@ -29,22 +30,45 @@ const ProductForm = () => {
   
   const selectedPlan = sessionStorage.getItem("selectedPlan") || "gratuito";
   
-  const onSubmit = (data: ProductFormData) => {
+  const onSubmit = async (data: ProductFormData) => {
     setIsLoading(true);
 
-    // Simulate API call delay
-    setTimeout(() => {
-      // Save form data to sessionStorage for use in results page
+    try {
+      // Tentar análise via n8n
+      const n8nResponse = await N8nService.analyzeProduct(data, selectedPlan);
+      
+      // Salvar dados do formulário
       sessionStorage.setItem("productData", JSON.stringify(data));
       
-      // Generate mock results based on selectedPlan
+      let analysisResults;
+      
+      if (n8nResponse.success && n8nResponse.data) {
+        // Usar dados do n8n se disponíveis
+        analysisResults = n8nResponse.data;
+        toast.success("Análise realizada com sucesso via n8n!");
+        console.log("Usando dados do n8n:", analysisResults);
+      } else {
+        // Fallback para dados simulados
+        analysisResults = generateMockResults(data, selectedPlan);
+        toast.warning("Usando análise simulada. Verifique a conexão com n8n.");
+        console.log("Usando dados simulados como fallback");
+      }
+      
+      sessionStorage.setItem("analysisResults", JSON.stringify(analysisResults));
+      navigate("/results");
+
+    } catch (error) {
+      console.error("Erro na análise:", error);
+      toast.error("Erro na análise. Usando dados simulados.");
+      
+      // Fallback para dados simulados
+      sessionStorage.setItem("productData", JSON.stringify(data));
       const mockResults = generateMockResults(data, selectedPlan);
       sessionStorage.setItem("analysisResults", JSON.stringify(mockResults));
-      
-      setIsLoading(false);
-      toast.success("Análise realizada com sucesso!");
       navigate("/results");
-    }, 2000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
