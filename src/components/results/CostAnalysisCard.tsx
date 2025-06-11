@@ -38,12 +38,12 @@ const CostAnalysisCard: React.FC<CostAnalysisCardProps> = ({
 
   // Conteúdo detalhado que é exibido apenas quando expandido
   const detailedContent = (
-    <div className="space-y-6 sm:space-y-8">
+    <div className="space-y-8">
       {/* Simulador de margem */}
       <ProfitSimulator costAnalysis={costAnalysis} />
       
       {/* Gráfico de lucro por volume */}
-      <div className="mt-8 sm:mt-12 pb-4 sm:pb-6">
+      <div className="mt-12 pb-6">
         <ProfitVolumeChart profit={profit} />
       </div>
       

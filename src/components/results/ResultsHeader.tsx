@@ -2,6 +2,7 @@
 import React from "react";
 import { countryNames } from "@/utils/countryMapping";
 import { ProductData } from "@/types/product";
+import PlanBadge from "@/components/product/PlanBadge";
 
 interface ResultsHeaderProps {
   productData: ProductData;
@@ -20,6 +21,7 @@ const ResultsHeader: React.FC<ResultsHeaderProps> = ({ productData, selectedPlan
             País de destino: {countryNames[productData.country] || productData.country}
           </p>
         </div>
+        <PlanBadge plan={selectedPlan} />
       </div>
     </div>
   );

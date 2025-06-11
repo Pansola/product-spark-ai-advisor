@@ -7,7 +7,7 @@ interface ProductFormHeaderProps {
 
 const ProductFormHeader: React.FC<ProductFormHeaderProps> = ({ selectedPlan }) => {
   return (
-    <div className="bg-primary p-6 text-white text-center">
+    <div className="bg-primary p-6 text-white">
       <h1 className="text-2xl font-bold">
         Informações do Produto
       </h1>
